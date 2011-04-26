@@ -44,6 +44,10 @@
 				@"abcdaaaaaaaaaefghij",
 				@"abcdaaaaaaaaaefghij",
 				@"abcdaaaaaaaaaefghij",
+				@"pict",
+				@"pict",
+				@"pict",
+				@"pict",
 				nil];
 	[messages retain];
 	
@@ -64,7 +68,10 @@
 		currentMessageIndex = 0;
 	
 	if (popup == nil) {
-		popup= [[SNPopupView alloc] initWithString:nextTitle];
+		if ([nextTitle isEqualToString:@"pict"])
+			popup = [[SNPopupView alloc] initWithImage:[UIImage imageNamed:@"2tchSmall.png"]];
+		else
+			popup = [[SNPopupView alloc] initWithString:nextTitle];
 		[popup showAtPoint:[touch locationInView:self.view] inView:self.view];
 		[popup addTarget:self action:@selector(didTouchPopupView:)];
 		[popup release];
@@ -75,11 +82,18 @@
 		if ([currentTitle isEqualToString:nextTitle]) {
 			[popup showAtPoint:[touch locationInView:self.view] inView:self.view];
 		}
+		else if (currentTitle == nil && [nextTitle isEqualToString:@"pict"]) {
+			[popup showAtPoint:[touch locationInView:self.view] inView:self.view];
+		}
 		else {
 			[popup dismiss];
 			popup = nil;
 			
-			popup= [[SNPopupView alloc] initWithString:nextTitle];
+			if ([nextTitle isEqualToString:@"pict"])
+				popup = [[SNPopupView alloc] initWithImage:[UIImage imageNamed:@"2tchSmall.png"]];
+			else
+				popup = [[SNPopupView alloc] initWithString:nextTitle];
+			
 			[popup showAtPoint:[touch locationInView:self.view] inView:self.view];
 			[popup addTarget:self action:@selector(didTouchPopupView:)];
 			[popup release];
