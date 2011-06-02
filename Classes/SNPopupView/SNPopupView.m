@@ -467,9 +467,7 @@
 	
     // get points
     CGFloat minx = CGRectGetMinX( rect ), midx = CGRectGetMidX( rect ), maxx = CGRectGetMaxX( rect );
-    CGFloat miny = CGRectGetMinY( rect ), midy = CGRectGetMidY( rect ), maxy = CGRectGetMaxY( rect );
-	
-	maxy = 0; // for compiler warning
+    CGFloat miny = CGRectGetMinY( rect ), midy = CGRectGetMidY( rect );
 	
 	CGFloat rightEdgeX = minx;
 	CGFloat rightEdgeY = midy - 10;
@@ -546,6 +544,8 @@
 
 - (void)dealloc {
 	DNSLogMethod
+	CGGradientRelease(gradient);
+	CGGradientRelease(gradient2);
 	[title release];
 	[image release];
     [super dealloc];
