@@ -26,5 +26,11 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>icon57x57.png</string>
+		<string>icon114x114.png</string>
+		<string>icon72x72.png</string>
+	</array>
 </dict>
 </plist>

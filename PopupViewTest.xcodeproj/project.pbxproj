@@ -8,14 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		1427AFDF127F02840082F84D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1427AFDE127F02840082F84D /* QuartzCore.framework */; };
-		143F9FFE139756270008ACE0 /* 2tchSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 143F9FF4139756270008ACE0 /* 2tchSmall.png */; };
 		143F9FFF139756270008ACE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 143F9FF5139756270008ACE0 /* main.m */; };
-		143FA000139756270008ACE0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143F9FF6139756270008ACE0 /* MainWindow.xib */; };
 		143FA001139756270008ACE0 /* PopupViewTest-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 143F9FF8139756270008ACE0 /* PopupViewTest-Info.plist */; };
 		143FA002139756270008ACE0 /* PopupViewTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 143F9FFA139756270008ACE0 /* PopupViewTestAppDelegate.m */; };
 		143FA003139756270008ACE0 /* PopupViewTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143F9FFC139756270008ACE0 /* PopupViewTestViewController.m */; };
-		143FA004139756270008ACE0 /* PopupViewTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143F9FFD139756270008ACE0 /* PopupViewTestViewController.xib */; };
 		143FA0071397562D0008ACE0 /* SNPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 143FA0061397562D0008ACE0 /* SNPopupView.m */; };
+		14FDABA013977B3E008BF9D5 /* 2tchSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 14FDAB9713977B3E008BF9D5 /* 2tchSmall.png */; };
+		14FDABA113977B3E008BF9D5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 14FDAB9913977B3E008BF9D5 /* Default.png */; };
+		14FDABA213977B3E008BF9D5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14FDAB9A13977B3E008BF9D5 /* Default@2x.png */; };
+		14FDABA313977B3E008BF9D5 /* icon114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 14FDAB9B13977B3E008BF9D5 /* icon114x114.png */; };
+		14FDABA413977B3E008BF9D5 /* icon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 14FDAB9C13977B3E008BF9D5 /* icon57x57.png */; };
+		14FDABA513977B3E008BF9D5 /* icon72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 14FDAB9D13977B3E008BF9D5 /* icon72x72.png */; };
+		14FDABA613977B3E008BF9D5 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FDAB9E13977B3E008BF9D5 /* MainWindow.xib */; };
+		14FDABA713977B3E008BF9D5 /* PopupViewTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FDAB9F13977B3E008BF9D5 /* PopupViewTestViewController.xib */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
@@ -23,18 +28,23 @@
 
 /* Begin PBXFileReference section */
 		1427AFDE127F02840082F84D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		143F9FF4139756270008ACE0 /* 2tchSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 2tchSmall.png; path = PopupViewTest/2tchSmall.png; sourceTree = SOURCE_ROOT; };
 		143F9FF5139756270008ACE0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = PopupViewTest/main.m; sourceTree = SOURCE_ROOT; };
-		143F9FF6139756270008ACE0 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = PopupViewTest/MainWindow.xib; sourceTree = SOURCE_ROOT; };
 		143F9FF7139756270008ACE0 /* PopupViewTest_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopupViewTest_Prefix.pch; path = PopupViewTest/PopupViewTest_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		143F9FF8139756270008ACE0 /* PopupViewTest-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "PopupViewTest-Info.plist"; path = "PopupViewTest/PopupViewTest-Info.plist"; sourceTree = SOURCE_ROOT; };
 		143F9FF9139756270008ACE0 /* PopupViewTestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopupViewTestAppDelegate.h; path = PopupViewTest/PopupViewTestAppDelegate.h; sourceTree = SOURCE_ROOT; };
 		143F9FFA139756270008ACE0 /* PopupViewTestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopupViewTestAppDelegate.m; path = PopupViewTest/PopupViewTestAppDelegate.m; sourceTree = SOURCE_ROOT; };
 		143F9FFB139756270008ACE0 /* PopupViewTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopupViewTestViewController.h; path = PopupViewTest/PopupViewTestViewController.h; sourceTree = SOURCE_ROOT; };
 		143F9FFC139756270008ACE0 /* PopupViewTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopupViewTestViewController.m; path = PopupViewTest/PopupViewTestViewController.m; sourceTree = SOURCE_ROOT; };
-		143F9FFD139756270008ACE0 /* PopupViewTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PopupViewTestViewController.xib; path = PopupViewTest/PopupViewTestViewController.xib; sourceTree = SOURCE_ROOT; };
 		143FA0051397562D0008ACE0 /* SNPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNPopupView.h; sourceTree = "<group>"; };
 		143FA0061397562D0008ACE0 /* SNPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNPopupView.m; sourceTree = "<group>"; };
+		14FDAB9713977B3E008BF9D5 /* 2tchSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2tchSmall.png; sourceTree = "<group>"; };
+		14FDAB9913977B3E008BF9D5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		14FDAB9A13977B3E008BF9D5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		14FDAB9B13977B3E008BF9D5 /* icon114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114x114.png; sourceTree = "<group>"; };
+		14FDAB9C13977B3E008BF9D5 /* icon57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57x57.png; sourceTree = "<group>"; };
+		14FDAB9D13977B3E008BF9D5 /* icon72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72x72.png; sourceTree = "<group>"; };
+		14FDAB9E13977B3E008BF9D5 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		14FDAB9F13977B3E008BF9D5 /* PopupViewTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopupViewTestViewController.xib; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* PopupViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopupViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -59,18 +69,39 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				143F9FF4139756270008ACE0 /* 2tchSmall.png */,
 				143F9FF5139756270008ACE0 /* main.m */,
-				143F9FF6139756270008ACE0 /* MainWindow.xib */,
 				143F9FF7139756270008ACE0 /* PopupViewTest_Prefix.pch */,
 				143F9FF8139756270008ACE0 /* PopupViewTest-Info.plist */,
 				143F9FF9139756270008ACE0 /* PopupViewTestAppDelegate.h */,
 				143F9FFA139756270008ACE0 /* PopupViewTestAppDelegate.m */,
 				143F9FFB139756270008ACE0 /* PopupViewTestViewController.h */,
 				143F9FFC139756270008ACE0 /* PopupViewTestViewController.m */,
-				143F9FFD139756270008ACE0 /* PopupViewTestViewController.xib */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		14FDAB9613977B3E008BF9D5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				14FDAB9713977B3E008BF9D5 /* 2tchSmall.png */,
+				14FDAB9813977B3E008BF9D5 /* image */,
+				14FDAB9E13977B3E008BF9D5 /* MainWindow.xib */,
+				14FDAB9F13977B3E008BF9D5 /* PopupViewTestViewController.xib */,
+			);
+			name = Resources;
+			path = PopupViewTest/Resources;
+			sourceTree = "<group>";
+		};
+		14FDAB9813977B3E008BF9D5 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				14FDAB9913977B3E008BF9D5 /* Default.png */,
+				14FDAB9A13977B3E008BF9D5 /* Default@2x.png */,
+				14FDAB9B13977B3E008BF9D5 /* icon114x114.png */,
+				14FDAB9C13977B3E008BF9D5 /* icon57x57.png */,
+				14FDAB9D13977B3E008BF9D5 /* icon72x72.png */,
+			);
+			path = image;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -87,26 +118,11 @@
 				143FA0051397562D0008ACE0 /* SNPopupView.h */,
 				143FA0061397562D0008ACE0 /* SNPopupView.m */,
 				080E96DDFE201D6D7F000001 /* Classes */,
-				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
+				14FDAB9613977B3E008BF9D5 /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			name = CustomTemplate;
-			sourceTree = "<group>";
-		};
-		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Other Sources";
-			sourceTree = "<group>";
-		};
-		29B97317FDCFA39411CA2CEA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
@@ -169,10 +185,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				143F9FFE139756270008ACE0 /* 2tchSmall.png in Resources */,
-				143FA000139756270008ACE0 /* MainWindow.xib in Resources */,
 				143FA001139756270008ACE0 /* PopupViewTest-Info.plist in Resources */,
-				143FA004139756270008ACE0 /* PopupViewTestViewController.xib in Resources */,
+				14FDABA013977B3E008BF9D5 /* 2tchSmall.png in Resources */,
+				14FDABA113977B3E008BF9D5 /* Default.png in Resources */,
+				14FDABA213977B3E008BF9D5 /* Default@2x.png in Resources */,
+				14FDABA313977B3E008BF9D5 /* icon114x114.png in Resources */,
+				14FDABA413977B3E008BF9D5 /* icon57x57.png in Resources */,
+				14FDABA513977B3E008BF9D5 /* icon72x72.png in Resources */,
+				14FDABA613977B3E008BF9D5 /* MainWindow.xib in Resources */,
+				14FDABA713977B3E008BF9D5 /* PopupViewTestViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
