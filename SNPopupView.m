@@ -41,7 +41,7 @@
 #define POPUP_ANIMATION_DURATION		0.3
 #define DISMISS_ANIMATION_DURATION		0.2
 
-#define TITLE_SIZE						20
+#define DEFAULT_TITLE_SIZE				20
 
 #define ALPHA							0.6
 
@@ -82,12 +82,12 @@
         // Initialization code
 		[self setBackgroundColor:[UIColor clearColor]];
 
-		UIFont *font = [UIFont boldSystemFontOfSize:TITLE_SIZE];
+		UIFont *font = [UIFont boldSystemFontOfSize:DEFAULT_TITLE_SIZE];
 		
-		CGSize title_size = [title sizeWithFont:font];
+		CGSize titleRenderingSize = [title sizeWithFont:font];
 		
 		contentBounds = CGRectMake(0, 0, 0, 0);
-		contentBounds.size = title_size;
+		contentBounds.size = titleRenderingSize;
 		
 		[self setupGradientColors];
 
@@ -531,7 +531,7 @@
 	// draw content
 	if ([title length]) {
 		CGContextSetRGBFillColor(context, 1, 1, 1, 1);
-		UIFont *font = [UIFont boldSystemFontOfSize:TITLE_SIZE];
+		UIFont *font = [UIFont boldSystemFontOfSize:DEFAULT_TITLE_SIZE];
 		[title drawInRect:contentRect withFont:font];
 	}
 	if (image) {
