@@ -75,14 +75,19 @@
 }
 
 - (id) initWithString:(NSString*)newValue {
+	return [self initWithString:newValue withFontOfSize:DEFAULT_TITLE_SIZE];
+}
+
+- (id) initWithString:(NSString*)newValue withFontOfSize:(float)newFontSize {
 	self = [super init];
 	if (self != nil) {
 		title = [newValue copy];
 		
         // Initialization code
 		[self setBackgroundColor:[UIColor clearColor]];
-
-		UIFont *font = [UIFont boldSystemFontOfSize:DEFAULT_TITLE_SIZE];
+		
+		fontSize = newFontSize;
+		UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
 		
 		CGSize titleRenderingSize = [title sizeWithFont:font];
 		
@@ -90,7 +95,7 @@
 		contentBounds.size = titleRenderingSize;
 		
 		[self setupGradientColors];
-
+		
 	}
 	return self;
 }
@@ -531,7 +536,7 @@
 	// draw content
 	if ([title length]) {
 		CGContextSetRGBFillColor(context, 1, 1, 1, 1);
-		UIFont *font = [UIFont boldSystemFontOfSize:DEFAULT_TITLE_SIZE];
+		UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
 		[title drawInRect:contentRect withFont:font];
 	}
 	if (image) {

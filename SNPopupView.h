@@ -54,6 +54,7 @@ typedef enum {
 	
 	NSString	*title;
 	UIImage		*image;
+	float		fontSize;
 	
 	float		horizontalOffset;
 	SNPopupViewDirection	direction;
@@ -62,6 +63,7 @@ typedef enum {
 }
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) UIImage *image;
+- (id) initWithString:(NSString*)newValue withFontOfSize:(float)newFontSize;
 - (id)initWithString:(NSString*)newValue;
 - (id)initWithImage:(UIImage*)newImage;
 - (void)showAtPoint:(CGPoint)p inView:(UIView*)inView;

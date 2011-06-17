@@ -71,7 +71,7 @@
 		if ([nextTitle isEqualToString:@"pict"])
 			popup = [[SNPopupView alloc] initWithImage:[UIImage imageNamed:@"2tchSmall.png"]];
 		else
-			popup = [[SNPopupView alloc] initWithString:nextTitle];
+			popup = [[SNPopupView alloc] initWithString:nextTitle withFontOfSize:12];
 		[popup showAtPoint:[touch locationInView:self.view] inView:self.view];
 		[popup addTarget:self action:@selector(didTouchPopupView:)];
 		[popup release];
@@ -92,7 +92,7 @@
 			if ([nextTitle isEqualToString:@"pict"])
 				popup = [[SNPopupView alloc] initWithImage:[UIImage imageNamed:@"2tchSmall.png"]];
 			else
-				popup = [[SNPopupView alloc] initWithString:nextTitle];
+				popup = [[SNPopupView alloc] initWithString:nextTitle withFontOfSize:12];
 			
 			[popup showAtPoint:[touch locationInView:self.view] inView:self.view];
 			[popup addTarget:self action:@selector(didTouchPopupView:)];
