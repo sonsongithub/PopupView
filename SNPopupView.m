@@ -45,6 +45,9 @@
 
 #define ALPHA							0.6
 
+#define BAR_BUTTON_ITEM_UPPER_MARGIN	10
+#define BAR_BUTTON_ITEM_BOTTOM_MARGIN	5
+
 @interface SNPopupView(Private)
 - (void)popup;
 @end
@@ -126,6 +129,42 @@
 
 #pragma mark -
 #pragma mark Animation
+
+- (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView {
+	
+	if(![barButtonItem respondsToSelector:@selector(view)]) {
+		// error
+		return;
+	}
+	
+	UIView *targetView = (UIView *)[barButtonItem performSelector:@selector(view)];
+	UIView *targetSuperview = [targetView superview];
+	
+	BOOL isOnNavigationBar = YES;
+	
+	if ([targetSuperview isKindOfClass:[UINavigationBar class]]) {
+		isOnNavigationBar = YES;
+	}
+	else if ([targetSuperview isKindOfClass:[UIToolbar class]]) {
+		isOnNavigationBar = NO;
+	}
+	else {
+		// error
+		return;
+	}
+	
+	CGRect rect = [targetSuperview convertRect:targetView.frame toView:inView];
+	
+	CGPoint p;
+	p.x = rect.origin.x + (int)rect.size.width/2;
+	
+	if (isOnNavigationBar)
+		p.y = rect.origin.y + rect.size.height + BAR_BUTTON_ITEM_UPPER_MARGIN;
+	else
+		p.y = rect.origin.y - BAR_BUTTON_ITEM_BOTTOM_MARGIN;
+	
+	[self showAtPoint:p inView:inView];
+}
 
 - (void)showAtPoint:(CGPoint)p inView:(UIView*)inView {
 	if ((p.y - contentBounds.size.height - POPUP_ROOT_SIZE.height - 2 * CONTENT_OFFSET.height - SHADOW_OFFSET.height) < 0) {

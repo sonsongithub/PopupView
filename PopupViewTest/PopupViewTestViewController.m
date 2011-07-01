@@ -34,24 +34,29 @@
 
 @implementation PopupViewTestViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-	messages = [NSArray arrayWithObjects:
-				@"hoge",
-				@"hoge",
-				@"hoge",
-				@"hoge",
-				@"abcdaaaaaaaaaefghij",
-				@"abcdaaaaaaaaaefghij",
-				@"abcdaaaaaaaaaefghij",
-				@"abcdaaaaaaaaaefghij",
-				@"pict",
-				@"pict",
-				@"pict",
-				@"pict",
-				nil];
-	[messages retain];
+- (IBAction)pushButton:(id)sender {
+	DNSLogMethod
 	
-	currentMessageIndex = 0;
+	if (popup == nil) {
+		if (currentMessageIndex == 0) {
+			popup = [[SNPopupView alloc] initWithImage:[UIImage imageNamed:@"2tchSmall.png"]];
+			currentMessageIndex = 1;
+		}
+		else {
+			popup = [[SNPopupView alloc] initWithString:@"test message" withFontOfSize:12];
+			currentMessageIndex = 0;
+		}
+		[popup showFromBarButtonItem:sender inView:self.view];
+		[popup addTarget:self action:@selector(didTouchPopupView:)];
+		[popup release];
+	}
+	else {
+		[popup dismiss];
+		popup = nil;
+	}
+}
+
+- (void)viewWillAppear:(BOOL)animated {
 }
 
 - (void)didTouchPopupView:(SNPopupView*)sender {
@@ -62,42 +67,22 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	UITouch *touch = [touches anyObject];
 	
-	NSString *nextTitle = [messages objectAtIndex:currentMessageIndex++];
-
-	if (currentMessageIndex >= [messages count])
-		currentMessageIndex = 0;
-	
 	if (popup == nil) {
-		if ([nextTitle isEqualToString:@"pict"])
+		if (currentMessageIndex == 0) {
 			popup = [[SNPopupView alloc] initWithImage:[UIImage imageNamed:@"2tchSmall.png"]];
-		else
-			popup = [[SNPopupView alloc] initWithString:nextTitle withFontOfSize:12];
+			currentMessageIndex = 1;
+		}
+		else {
+			popup = [[SNPopupView alloc] initWithString:@"test message" withFontOfSize:12];
+			currentMessageIndex = 0;
+		}
 		[popup showAtPoint:[touch locationInView:self.view] inView:self.view];
 		[popup addTarget:self action:@selector(didTouchPopupView:)];
 		[popup release];
 	}
 	else {
-		NSString *currentTitle = popup.title;
-		
-		if ([currentTitle isEqualToString:nextTitle]) {
-			[popup showAtPoint:[touch locationInView:self.view] inView:self.view];
-		}
-		else if (currentTitle == nil && [nextTitle isEqualToString:@"pict"]) {
-			[popup showAtPoint:[touch locationInView:self.view] inView:self.view];
-		}
-		else {
-			[popup dismiss];
-			popup = nil;
-			
-			if ([nextTitle isEqualToString:@"pict"])
-				popup = [[SNPopupView alloc] initWithImage:[UIImage imageNamed:@"2tchSmall.png"]];
-			else
-				popup = [[SNPopupView alloc] initWithString:nextTitle withFontOfSize:12];
-			
-			[popup showAtPoint:[touch locationInView:self.view] inView:self.view];
-			[popup addTarget:self action:@selector(didTouchPopupView:)];
-			[popup release];
-		}
+		[popup dismiss];
+		popup = nil;
 	}
 }
 

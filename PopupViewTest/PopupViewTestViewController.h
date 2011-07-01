@@ -38,5 +38,7 @@
 	int				currentMessageIndex;
 }
 
+- (IBAction)pushButton:(id)sender;
+
 @end
 
