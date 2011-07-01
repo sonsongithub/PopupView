@@ -10,6 +10,12 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>icon57x57.png</string>
+		<string>icon114x114.png</string>
+		<string>icon72x72.png</string>
+	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.yourcompany.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -26,11 +32,7 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
-	<key>CFBundleIconFiles</key>
-	<array>
-		<string>icon57x57.png</string>
-		<string>icon114x114.png</string>
-		<string>icon72x72.png</string>
-	</array>
+	<key>NSMainNibFile~ipad</key>
+	<string>MainWindow-iPad</string>
 </dict>
 </plist>
