@@ -34,11 +34,11 @@
 
 @interface PopupViewTestAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
-    PopupViewTestViewController *viewController;
+    UINavigationController *viewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet PopupViewTestViewController *viewController;
+@property (nonatomic, retain) IBOutlet UINavigationController *viewController;
 
 @end
 
