@@ -36,9 +36,11 @@
 	SNPopupView		*popup;
 	NSArray			*messages;
 	int				currentMessageIndex;
+	BOOL			animated;
 }
 
 - (IBAction)pushButton:(id)sender;
+- (IBAction)changeAnimation:(id)sender;
 
 @end
 

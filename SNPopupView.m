@@ -130,7 +130,12 @@
 #pragma mark -
 #pragma mark Animation
 
+
 - (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView {
+	[self showFromBarButtonItem:barButtonItem inView:inView animated:YES];
+}
+
+- (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated {
 	
 	if(![barButtonItem respondsToSelector:@selector(view)]) {
 		// error
@@ -163,10 +168,14 @@
 	else
 		p.y = rect.origin.y - BAR_BUTTON_ITEM_BOTTOM_MARGIN;
 	
-	[self showAtPoint:p inView:inView];
+	[self showAtPoint:p inView:inView animated:animated];
 }
 
 - (void)showAtPoint:(CGPoint)p inView:(UIView*)inView {
+	[self showAtPoint:p inView:inView animated:NO];
+}
+
+- (void)showAtPoint:(CGPoint)p inView:(UIView*)inView animated:(BOOL)animated {
 	if ((p.y - contentBounds.size.height - POPUP_ROOT_SIZE.height - 2 * CONTENT_OFFSET.height - SHADOW_OFFSET.height) < 0) {
 		direction = SNPopupViewDown;
 	}
@@ -300,10 +309,14 @@
 	
 	if (isAlreadyShown) {
 		[self setNeedsDisplay];
-		[UIView beginAnimations:@"move" context:nil];
-		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+		if (animated) {
+			[UIView beginAnimations:@"move" context:nil];
+			[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+		}
 		self.frame = viewRect;
-		[UIView commitAnimations];
+		if (animated) {
+			[UIView commitAnimations];
+		}
 	}
 	else {
 		// set frame
@@ -311,7 +324,8 @@
 		self.frame = viewRect;
 		
 		// popup
-		[self popup];
+		if (animated)
+			[self popup];
 	}
 }
 
@@ -319,16 +333,7 @@
 	[self removeFromSuperview];
 }
 
-- (void)popup {
-	CAKeyframeAnimation *positionAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
-	
-	float r1 = 0.1;
-	float r2 = 1.4;
-	float r3 = 1;
-	float r4 = 0.8;
-	float r5 = 1;
-	
-	float y_offset =  (popupRect.size.height/2 - POPUP_ROOT_SIZE.height);
+- (CAKeyframeAnimation*)getAlphaAnimationForPopup {
 	
 	CAKeyframeAnimation *alphaAnimation = [CAKeyframeAnimation	animationWithKeyPath:@"opacity"];
 	alphaAnimation.removedOnCompletion = NO;
@@ -342,7 +347,20 @@
 							   [NSNumber numberWithFloat:0.1],
 							   [NSNumber numberWithFloat:1],
 							   nil];
+	return alphaAnimation;
+}
+
+- (CAKeyframeAnimation*)getPositionAnimationForPopup {
 	
+	float r1 = 0.1;
+	float r2 = 1.4;
+	float r3 = 1;
+	float r4 = 0.8;
+	float r5 = 1;
+	
+	float y_offset =  (popupRect.size.height/2 - POPUP_ROOT_SIZE.height);
+	
+	CAKeyframeAnimation *positionAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
 	CATransform3D tm1, tm2, tm3, tm4, tm5;
 	
 	if (direction & SNPopupViewUp) {
@@ -383,6 +401,13 @@
 								  [NSNumber numberWithFloat:0.7], 
 								  [NSNumber numberWithFloat:1.0],
 								  nil];
+	return positionAnimation;
+}
+
+- (void)popup {
+	
+	CAKeyframeAnimation *positionAnimation = [self getPositionAnimationForPopup];
+	CAKeyframeAnimation *alphaAnimation = [self getAlphaAnimationForPopup];
 	
 	CAAnimationGroup *group = [CAAnimationGroup animation];
 	group.animations = [NSArray arrayWithObjects:positionAnimation, alphaAnimation, nil];
@@ -391,6 +416,14 @@
 	group.fillMode = kCAFillModeForwards;
 	
 	[self.layer addAnimation:group forKey:@"hoge"];
+}
+
+
+- (void)dismiss:(BOOL)animtaed {
+	if (animtaed)
+		[self dismiss];
+	else
+		[self removeFromSuperview];
 }
 
 - (void)dismiss {

@@ -46,17 +46,23 @@
 			popup = [[SNPopupView alloc] initWithString:@"test message" withFontOfSize:12];
 			currentMessageIndex = 0;
 		}
-		[popup showFromBarButtonItem:sender inView:self.view];
+		[popup showFromBarButtonItem:sender inView:self.view animated:animated];
 		[popup addTarget:self action:@selector(didTouchPopupView:)];
 		[popup release];
 	}
 	else {
-		[popup dismiss];
+		[popup dismiss:animated];
 		popup = nil;
 	}
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (IBAction)changeAnimation:(id)sender {
+	UISwitch *switcher = sender;
+	animated = switcher.on;
+}
+
+- (void)viewWillAppear:(BOOL)_animated {
+	animated = YES;
 }
 
 - (void)didTouchPopupView:(SNPopupView*)sender {
@@ -73,15 +79,15 @@
 			currentMessageIndex = 1;
 		}
 		else {
-			popup = [[SNPopupView alloc] initWithString:@"test message" withFontOfSize:12];
+			popup = [[SNPopupView alloc] initWithString:@"test message is here!!" withFontOfSize:16];
 			currentMessageIndex = 0;
 		}
-		[popup showAtPoint:[touch locationInView:self.view] inView:self.view];
+		[popup showAtPoint:[touch locationInView:self.view] inView:self.view animated:animated];
 		[popup addTarget:self action:@selector(didTouchPopupView:)];
 		[popup release];
 	}
 	else {
-		[popup dismiss];
+		[popup dismiss:animated];
 		popup = nil;
 	}
 }

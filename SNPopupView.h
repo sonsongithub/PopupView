@@ -66,8 +66,14 @@ typedef enum {
 - (id) initWithString:(NSString*)newValue withFontOfSize:(float)newFontSize;
 - (id)initWithString:(NSString*)newValue;
 - (id)initWithImage:(UIImage*)newImage;
-- (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView;
+
 - (void)showAtPoint:(CGPoint)p inView:(UIView*)inView;
+- (void)showAtPoint:(CGPoint)p inView:(UIView*)inView animated:(BOOL)animated;
+- (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView;
+- (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated;
+
 - (void)dismiss;
+- (void)dismiss:(BOOL)animtaed;
+
 - (void)addTarget:(id)target action:(SEL)action;
 @end
