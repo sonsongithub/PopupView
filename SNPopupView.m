@@ -120,6 +120,22 @@
 	return self;
 }
 
+- (id) initWithContentView:(UIView*)newContentView contentSize:(CGSize)contentSize {
+	self = [super init];
+	if (self != nil) {
+		contentView = [newContentView retain];
+		
+        // Initialization code
+		[self setBackgroundColor:[UIColor clearColor]];
+		
+		contentBounds = CGRectMake(0, 0, 0, 0);
+		contentBounds.size = contentSize;
+		
+		[self setupGradientColors];
+	}
+	return self;
+}
+
 - (void)addTarget:(id)newTarget action:(SEL)newAction {
 	if ([newTarget respondsToSelector:newAction]) {
 		target = newTarget;
@@ -309,6 +325,8 @@
 	
 	if (isAlreadyShown) {
 		[self setNeedsDisplay];
+		
+		
 		if (animated) {
 			[UIView beginAnimations:@"move" context:nil];
 			[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
@@ -322,6 +340,12 @@
 		// set frame
 		[inView addSubview:self];
 		self.frame = viewRect;
+		
+		
+		if (contentView) {
+			[self addSubview:contentView];
+			[contentView setFrame:contentRect];
+		}
 		
 		// popup
 		if (animated)

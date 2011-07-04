@@ -37,6 +37,7 @@
 	NSArray			*messages;
 	int				currentMessageIndex;
 	BOOL			animated;
+	IBOutlet UIView *testContentView;
 }
 
 - (IBAction)pushButton:(id)sender;

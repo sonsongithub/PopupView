@@ -40,10 +40,14 @@
 	if (popup == nil) {
 		if (currentMessageIndex == 0) {
 			popup = [[SNPopupView alloc] initWithImage:[UIImage imageNamed:@"2tchSmall.png"]];
-			currentMessageIndex = 1;
+			currentMessageIndex++;
 		}
-		else {
+		else if (currentMessageIndex == 1) {
 			popup = [[SNPopupView alloc] initWithString:@"test message" withFontOfSize:12];
+			currentMessageIndex++;
+		}
+		else if (currentMessageIndex == 2) {
+			popup = [[SNPopupView alloc] initWithContentView:testContentView contentSize:CGSizeMake(203, 63)];
 			currentMessageIndex = 0;
 		}
 		[popup showFromBarButtonItem:sender inView:self.view animated:animated];
@@ -76,10 +80,14 @@
 	if (popup == nil) {
 		if (currentMessageIndex == 0) {
 			popup = [[SNPopupView alloc] initWithImage:[UIImage imageNamed:@"2tchSmall.png"]];
-			currentMessageIndex = 1;
+			currentMessageIndex++;
 		}
-		else {
-			popup = [[SNPopupView alloc] initWithString:@"test message is here!!" withFontOfSize:16];
+		else if (currentMessageIndex == 1) {
+			popup = [[SNPopupView alloc] initWithString:@"test message" withFontOfSize:12];
+			currentMessageIndex++;
+		}
+		else if (currentMessageIndex == 2) {
+			popup = [[SNPopupView alloc] initWithContentView:testContentView contentSize:CGSizeMake(203, 63)];
 			currentMessageIndex = 0;
 		}
 		[popup showAtPoint:[touch locationInView:self.view] inView:self.view animated:animated];
