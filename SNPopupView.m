@@ -54,7 +54,7 @@
 
 @implementation SNPopupView
 
-@synthesize title, image;
+@synthesize title, image, contentView;
 
 #pragma mark -
 #pragma mark Prepare
@@ -649,6 +649,7 @@
 	CGGradientRelease(gradient2);
 	[title release];
 	[image release];
+	[contentView release];
     [super dealloc];
 }
 

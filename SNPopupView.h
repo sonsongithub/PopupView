@@ -65,6 +65,7 @@ typedef enum {
 }
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) UIImage *image;
+@property (nonatomic, readonly) UIView *contentView;
 - (id)initWithString:(NSString*)newValue withFontOfSize:(float)newFontSize;
 - (id)initWithString:(NSString*)newValue;
 - (id)initWithImage:(UIImage*)newImage;
