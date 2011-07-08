@@ -53,6 +53,11 @@
 }
 @property (nonatomic, assign) SNPopupView *delegate;
 @end
+
+@interface SNPopupView(Private)
+- (void)popup;
+- (void)dismissModal;
+@end
 	
 @implementation TouchPeekView
 
@@ -68,13 +73,9 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	DNSLogMethod
-	[delegate dismiss:YES];
+	[delegate dismissModal];
 }
 
-@end
-
-@interface SNPopupView(Private)
-- (void)popup;
 @end
 
 @implementation SNPopupView
@@ -183,21 +184,25 @@
 }
 
 - (void)presentModalAtPoint:(CGPoint)p inView:(UIView*)inView {
+	animatedWhenAppering = YES;
 	[self createAndAttachTouchPeekView];
 	[self showAtPoint:[inView convertPoint:p toView:[[UIApplication sharedApplication] keyWindow]] inView:[[UIApplication sharedApplication] keyWindow]];
 }
 
 - (void)presentModalAtPoint:(CGPoint)p inView:(UIView*)inView animated:(BOOL)animated {
+	animatedWhenAppering = animated;
 	[self createAndAttachTouchPeekView];
 	[self showAtPoint:[inView convertPoint:p toView:[[UIApplication sharedApplication] keyWindow]] inView:[[UIApplication sharedApplication] keyWindow] animated:animated];
 }
 
 - (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView {
+	animatedWhenAppering = YES;
 	[self createAndAttachTouchPeekView];
 	[self showFromBarButtonItem:barButtonItem inView:[[UIApplication sharedApplication] keyWindow]];
 }
 
 - (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated {
+	animatedWhenAppering = animated;
 	[self createAndAttachTouchPeekView];
 	[self showFromBarButtonItem:barButtonItem inView:[[UIApplication sharedApplication] keyWindow] animated:animated];
 }
@@ -505,24 +510,23 @@
 	[self.layer addAnimation:group forKey:@"hoge"];
 }
 
+- (void)dismissModal {
+	if ([peekView superview]) 
+		[delegate didDismissModal:self];
+	[peekView removeFromSuperview];
+	
+	[self dismiss:animatedWhenAppering];
+}
 
 - (void)dismiss:(BOOL)animtaed {
 	if (animtaed)
 		[self dismiss];
 	else {
-		if ([peekView superview]) 
-			[delegate didDismissModal:self];
-		[peekView removeFromSuperview];
 		[self removeFromSuperview];
 	}
 }
 
 - (void)dismiss {
-	
-	if ([peekView superview]) 
-		[delegate didDismissModal:self];
-	[peekView removeFromSuperview];
-	
 	CAKeyframeAnimation *positionAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
 	
 	float r1 = 1.0;
