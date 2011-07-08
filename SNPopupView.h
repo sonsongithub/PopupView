@@ -30,12 +30,22 @@
 
 #import <UIKit/UIKit.h>
 
+@class TouchPeekView;
+
 typedef enum {
 	SNPopupViewUp		= 1,
 	SNPopupViewDown		= 2,
 	SNPopupViewRight	= 1 << 8,
 	SNPopupViewLeft		= 2 << 8,
 }SNPopupViewDirection;
+
+@class SNPopupView;
+
+@protocol SNPopupViewDelegate <NSObject>
+
+- (void)didDismissModal:(SNPopupView*)popupview;
+
+@end
 
 @interface SNPopupView : UIView {
 	CGGradientRef gradient;
@@ -62,10 +72,14 @@ typedef enum {
 	SNPopupViewDirection	direction;
 	id			target;
 	SEL			action;
+	
+	TouchPeekView	*peekView;
+	id<SNPopupViewDelegate>delegate;
 }
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) UIImage *image;
 @property (nonatomic, readonly) UIView *contentView;
+@property (nonatomic, assign) id <SNPopupViewDelegate> delegate;
 - (id)initWithString:(NSString*)newValue withFontOfSize:(float)newFontSize;
 - (id)initWithString:(NSString*)newValue;
 - (id)initWithImage:(UIImage*)newImage;
@@ -75,6 +89,11 @@ typedef enum {
 - (void)showAtPoint:(CGPoint)p inView:(UIView*)inView animated:(BOOL)animated;
 - (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView;
 - (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated;
+
+- (void)presentModalAtPoint:(CGPoint)p inView:(UIView*)inView;
+- (void)presentModalAtPoint:(CGPoint)p inView:(UIView*)inView animated:(BOOL)animated;
+- (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView;
+- (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated;
 
 - (void)dismiss;
 - (void)dismiss:(BOOL)animtaed;

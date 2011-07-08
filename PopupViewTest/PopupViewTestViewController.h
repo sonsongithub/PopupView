@@ -36,12 +36,14 @@
 	SNPopupView		*popup;
 	NSArray			*messages;
 	int				currentMessageIndex;
-	BOOL			animated;
 	IBOutlet UIView *testContentView;
+	
+	IBOutlet UISwitch *animationSwitch;
+	IBOutlet UISwitch *modalSwitch;
 }
 
 - (IBAction)pushButton:(id)sender;
-- (IBAction)changeAnimation:(id)sender;
-
+- (void)didDismissModal:(SNPopupView*)popupview;
+- (void)didTouchPopupView:(SNPopupView*)sender;
 @end
 

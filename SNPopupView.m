@@ -48,13 +48,38 @@
 #define BAR_BUTTON_ITEM_UPPER_MARGIN	10
 #define BAR_BUTTON_ITEM_BOTTOM_MARGIN	5
 
+@interface TouchPeekView : UIView {
+	SNPopupView *delegate;
+}
+@property (nonatomic, assign) SNPopupView *delegate;
+@end
+	
+@implementation TouchPeekView
+
+@synthesize delegate;
+
+- (id)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setBackgroundColor:[UIColor clearColor]];
+    }
+    return self;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	DNSLogMethod
+	[delegate dismiss:YES];
+}
+
+@end
+
 @interface SNPopupView(Private)
 - (void)popup;
 @end
 
 @implementation SNPopupView
 
-@synthesize title, image, contentView;
+@synthesize title, image, contentView, delegate;
 
 #pragma mark -
 #pragma mark Prepare
@@ -146,6 +171,65 @@
 #pragma mark -
 #pragma mark Animation
 
+- (void)presentModalAtPoint:(CGPoint)p inView:(UIView*)inView {
+	
+	UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+	
+	[peekView removeFromSuperview];
+	[peekView release];
+	peekView = nil;
+	peekView = [[TouchPeekView alloc] initWithFrame:window.frame];
+	[peekView setDelegate:self];
+	
+	[window addSubview:peekView];
+	
+	[self showAtPoint:[inView convertPoint:p toView:window] inView:window];
+}
+
+- (void)presentModalAtPoint:(CGPoint)p inView:(UIView*)inView animated:(BOOL)animated {
+
+	UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+	
+	[peekView removeFromSuperview];
+	[peekView release];
+	peekView = nil;
+	peekView = [[TouchPeekView alloc] initWithFrame:window.frame];
+	[peekView setDelegate:self];
+	
+	[window addSubview:peekView];
+	
+	[self showAtPoint:[inView convertPoint:p toView:window] inView:window animated:animated];
+}
+
+- (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView {
+	
+	UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+	
+	[peekView removeFromSuperview];
+	[peekView release];
+	peekView = nil;
+	peekView = [[TouchPeekView alloc] initWithFrame:window.frame];
+	[peekView setDelegate:self];
+	
+	[window addSubview:peekView];
+	
+	[self showFromBarButtonItem:barButtonItem inView:window];
+}
+
+- (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated {
+	
+	UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+	
+	[peekView removeFromSuperview];
+	[peekView release];
+	peekView = nil;
+	peekView = [[TouchPeekView alloc] initWithFrame:window.frame];
+	[peekView setDelegate:self];
+	
+	[window addSubview:peekView];
+	
+	[self showFromBarButtonItem:barButtonItem inView:window animated:animated];
+}
 
 - (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView {
 	[self showFromBarButtonItem:barButtonItem inView:inView animated:YES];
@@ -446,11 +530,20 @@
 - (void)dismiss:(BOOL)animtaed {
 	if (animtaed)
 		[self dismiss];
-	else
+	else {
+		if ([peekView superview]) 
+			[delegate didDismissModal:self];
+		[peekView removeFromSuperview];
 		[self removeFromSuperview];
+	}
 }
 
 - (void)dismiss {
+	
+	if ([peekView superview]) 
+		[delegate didDismissModal:self];
+	[peekView removeFromSuperview];
+	
 	CAKeyframeAnimation *positionAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
 	
 	float r1 = 1.0;
@@ -647,6 +740,8 @@
 	DNSLogMethod
 	CGGradientRelease(gradient);
 	CGGradientRelease(gradient2);
+	
+	[peekView release];
 	[title release];
 	[image release];
 	[contentView release];

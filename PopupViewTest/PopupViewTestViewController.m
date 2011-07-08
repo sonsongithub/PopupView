@@ -39,39 +39,41 @@
 	
 	if (popup == nil) {
 		if (currentMessageIndex == 0) {
-			popup = [[SNPopupView alloc] initWithImage:[UIImage imageNamed:@"2tchSmall.png"]];
+			popup = [[SNPopupView alloc] initWithContentView:testContentView contentSize:CGSizeMake(203, 63)];
 			currentMessageIndex++;
 		}
 		else if (currentMessageIndex == 1) {
-			popup = [[SNPopupView alloc] initWithString:@"test message" withFontOfSize:12];
+			popup = [[SNPopupView alloc] initWithString:@"test message" withFontOfSize:29];
 			currentMessageIndex++;
 		}
 		else if (currentMessageIndex == 2) {
-			popup = [[SNPopupView alloc] initWithContentView:testContentView contentSize:CGSizeMake(203, 63)];
+			popup = [[SNPopupView alloc] initWithImage:[UIImage imageNamed:@"2tchSmall.png"]];
 			currentMessageIndex = 0;
 		}
-		[popup showFromBarButtonItem:sender inView:self.view animated:animated];
+		if (modalSwitch.on)
+			[popup presentModalFromBarButtonItem:sender inView:self.view animated:animationSwitch.on];
+		else
+			[popup showFromBarButtonItem:sender inView:self.view animated:animationSwitch.on];
 		[popup addTarget:self action:@selector(didTouchPopupView:)];
 		[popup release];
+		[popup setDelegate:self];
 	}
-	else {
-		[popup dismiss:animated];
+	else if (!modalSwitch.on) {
+		[popup dismiss:animationSwitch.on];
 		popup = nil;
 	}
-}
-
-- (IBAction)changeAnimation:(id)sender {
-	UISwitch *switcher = sender;
-	animated = switcher.on;
-}
-
-- (void)viewWillAppear:(BOOL)_animated {
-	animated = YES;
 }
 
 - (void)didTouchPopupView:(SNPopupView*)sender {
 	DNSLogMethod
 	DNSLog(@"%@", sender);
+}
+
+- (void)didDismissModal:(SNPopupView*)popupview {
+	DNSLogMethod
+	if (popupview == popup) {
+		popup = nil;
+	}
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -83,19 +85,23 @@
 			currentMessageIndex++;
 		}
 		else if (currentMessageIndex == 1) {
-			popup = [[SNPopupView alloc] initWithString:@"test message" withFontOfSize:12];
+			popup = [[SNPopupView alloc] initWithString:@"test message" withFontOfSize:16];
 			currentMessageIndex++;
 		}
 		else if (currentMessageIndex == 2) {
 			popup = [[SNPopupView alloc] initWithContentView:testContentView contentSize:CGSizeMake(203, 63)];
 			currentMessageIndex = 0;
 		}
-		[popup showAtPoint:[touch locationInView:self.view] inView:self.view animated:animated];
+		if (modalSwitch.on)
+			[popup presentModalAtPoint:[touch locationInView:self.view] inView:self.view animated:animationSwitch.on];
+		else
+			[popup showAtPoint:[touch locationInView:self.view] inView:self.view animated:animationSwitch.on];
 		[popup addTarget:self action:@selector(didTouchPopupView:)];
 		[popup release];
+		[popup setDelegate:self];
 	}
-	else {
-		[popup dismiss:animated];
+	else if (!modalSwitch.on) {
+		[popup dismiss:animationSwitch.on];
 		popup = nil;
 	}
 }
