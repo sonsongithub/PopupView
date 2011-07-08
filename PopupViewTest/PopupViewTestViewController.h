@@ -30,9 +30,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class SNPopupView;
+#import "SNPopupView.h"
 
-@interface PopupViewTestViewController : UIViewController {
+@interface PopupViewTestViewController : UIViewController <SNPopupViewModalDelegate> {
 	SNPopupView		*popup;
 	NSArray			*messages;
 	int				currentMessageIndex;

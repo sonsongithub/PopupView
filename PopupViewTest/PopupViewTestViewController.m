@@ -30,8 +30,6 @@
 
 #import "PopupViewTestViewController.h"
 
-#import "SNPopupView.h"
-
 @implementation PopupViewTestViewController
 
 - (IBAction)pushButton:(id)sender {

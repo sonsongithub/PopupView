@@ -41,7 +41,7 @@ typedef enum {
 
 @class SNPopupView;
 
-@protocol SNPopupViewDelegate <NSObject>
+@protocol SNPopupViewModalDelegate <NSObject>
 
 - (void)didDismissModal:(SNPopupView*)popupview;
 
@@ -74,12 +74,13 @@ typedef enum {
 	SEL			action;
 	
 	TouchPeekView	*peekView;
-	id<SNPopupViewDelegate>delegate;
+	id<SNPopupViewModalDelegate>delegate;
 }
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) UIImage *image;
 @property (nonatomic, readonly) UIView *contentView;
-@property (nonatomic, assign) id <SNPopupViewDelegate> delegate;
+@property (nonatomic, assign) id <SNPopupViewModalDelegate> delegate;
+
 - (id)initWithString:(NSString*)newValue withFontOfSize:(float)newFontSize;
 - (id)initWithString:(NSString*)newValue;
 - (id)initWithImage:(UIImage*)newImage;
