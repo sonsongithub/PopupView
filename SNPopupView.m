@@ -168,13 +168,11 @@
 	}
 }
 
-#pragma mark -
-#pragma mark Animation
+#pragma mark - Present modal
 
-- (void)presentModalAtPoint:(CGPoint)p inView:(UIView*)inView {
-	
+- (void)createAndAttachTouchPeekView {
 	UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-	
+
 	[peekView removeFromSuperview];
 	[peekView release];
 	peekView = nil;
@@ -182,54 +180,29 @@
 	[peekView setDelegate:self];
 	
 	[window addSubview:peekView];
-	
-	[self showAtPoint:[inView convertPoint:p toView:window] inView:window];
+}
+
+- (void)presentModalAtPoint:(CGPoint)p inView:(UIView*)inView {
+	[self createAndAttachTouchPeekView];
+	[self showAtPoint:[inView convertPoint:p toView:[[UIApplication sharedApplication] keyWindow]] inView:[[UIApplication sharedApplication] keyWindow]];
 }
 
 - (void)presentModalAtPoint:(CGPoint)p inView:(UIView*)inView animated:(BOOL)animated {
-
-	UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-	
-	[peekView removeFromSuperview];
-	[peekView release];
-	peekView = nil;
-	peekView = [[TouchPeekView alloc] initWithFrame:window.frame];
-	[peekView setDelegate:self];
-	
-	[window addSubview:peekView];
-	
-	[self showAtPoint:[inView convertPoint:p toView:window] inView:window animated:animated];
+	[self createAndAttachTouchPeekView];
+	[self showAtPoint:[inView convertPoint:p toView:[[UIApplication sharedApplication] keyWindow]] inView:[[UIApplication sharedApplication] keyWindow] animated:animated];
 }
 
 - (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView {
-	
-	UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-	
-	[peekView removeFromSuperview];
-	[peekView release];
-	peekView = nil;
-	peekView = [[TouchPeekView alloc] initWithFrame:window.frame];
-	[peekView setDelegate:self];
-	
-	[window addSubview:peekView];
-	
-	[self showFromBarButtonItem:barButtonItem inView:window];
+	[self createAndAttachTouchPeekView];
+	[self showFromBarButtonItem:barButtonItem inView:[[UIApplication sharedApplication] keyWindow]];
 }
 
 - (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated {
-	
-	UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-	
-	[peekView removeFromSuperview];
-	[peekView release];
-	peekView = nil;
-	peekView = [[TouchPeekView alloc] initWithFrame:window.frame];
-	[peekView setDelegate:self];
-	
-	[window addSubview:peekView];
-	
-	[self showFromBarButtonItem:barButtonItem inView:window animated:animated];
+	[self createAndAttachTouchPeekView];
+	[self showFromBarButtonItem:barButtonItem inView:[[UIApplication sharedApplication] keyWindow] animated:animated];
 }
+
+#pragma mark - Show as normal view
 
 - (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView {
 	[self showFromBarButtonItem:barButtonItem inView:inView animated:YES];
@@ -437,9 +410,13 @@
 	}
 }
 
+#pragma mark - Core Animation call back
+
 - (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag {
 	[self removeFromSuperview];
 }
+
+#pragma mark - Make CoreAnimation object
 
 - (CAKeyframeAnimation*)getAlphaAnimationForPopup {
 	
@@ -511,6 +488,8 @@
 								  nil];
 	return positionAnimation;
 }
+
+#pragma mark - Popup and dismiss
 
 - (void)popup {
 	
@@ -594,8 +573,7 @@
 	[self.layer addAnimation:group forKey:@"hoge"];
 }
 
-#pragma mark -
-#pragma Drawing
+#pragma mark - Drawing
 
 - (void)makePathCircleCornerRect:(CGRect)rect radius:(float)radius popPoint:(CGPoint)popPoint {
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -675,8 +653,7 @@
     CGContextAddLineToPoint(context, leftEdgeX, leftEdgeY);
 }
 
-#pragma mark -
-#pragma mark Override
+#pragma mark - Override
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	DNSLogMethod
@@ -733,8 +710,7 @@
 	}
 }
 
-#pragma mark -
-#pragma mark dealloc
+#pragma mark - dealloc
 
 - (void)dealloc {
 	DNSLogMethod

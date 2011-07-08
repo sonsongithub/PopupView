@@ -75,6 +75,8 @@ typedef enum {
 	
 	TouchPeekView	*peekView;
 	id<SNPopupViewModalDelegate>delegate;
+	
+	BOOL		animatedWhenAppering;
 }
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) UIImage *image;
