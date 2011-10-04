@@ -56,7 +56,6 @@
 
 @interface SNPopupView(Private)
 - (void)popup;
-- (void)dismissModal;
 @end
 	
 @implementation TouchPeekView
