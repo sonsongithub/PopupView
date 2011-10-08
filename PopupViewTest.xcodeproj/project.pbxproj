@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1410EF4F144070F600C034A5 /* SNPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410EF4E144070F600C034A5 /* SNPopupView.m */; };
+		1410EF521440711D00C034A5 /* SNPopupView+UsingPrivateMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410EF511440711D00C034A5 /* SNPopupView+UsingPrivateMethod.m */; };
 		1427AFDF127F02840082F84D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1427AFDE127F02840082F84D /* QuartzCore.framework */; };
 		143F9FFF139756270008ACE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 143F9FF5139756270008ACE0 /* main.m */; };
 		143FA001139756270008ACE0 /* PopupViewTest-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 143F9FF8139756270008ACE0 /* PopupViewTest-Info.plist */; };
 		143FA002139756270008ACE0 /* PopupViewTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 143F9FFA139756270008ACE0 /* PopupViewTestAppDelegate.m */; };
 		143FA003139756270008ACE0 /* PopupViewTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143F9FFC139756270008ACE0 /* PopupViewTestViewController.m */; };
-		143FA0071397562D0008ACE0 /* SNPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 143FA0061397562D0008ACE0 /* SNPopupView.m */; };
 		14B7E42313BD9DB5007C8935 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B7E42213BD9DB5007C8935 /* MainWindow-iPad.xib */; };
 		14FDABA013977B3E008BF9D5 /* 2tchSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 14FDAB9713977B3E008BF9D5 /* 2tchSmall.png */; };
 		14FDABA113977B3E008BF9D5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 14FDAB9913977B3E008BF9D5 /* Default.png */; };
@@ -28,6 +29,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1410EF4D144070F600C034A5 /* SNPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNPopupView.h; sourceTree = "<group>"; };
+		1410EF4E144070F600C034A5 /* SNPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNPopupView.m; sourceTree = "<group>"; };
+		1410EF501440711D00C034A5 /* SNPopupView+UsingPrivateMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SNPopupView+UsingPrivateMethod.h"; sourceTree = "<group>"; };
+		1410EF511440711D00C034A5 /* SNPopupView+UsingPrivateMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SNPopupView+UsingPrivateMethod.m"; sourceTree = "<group>"; };
 		1427AFDE127F02840082F84D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		143F9FF5139756270008ACE0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = PopupViewTest/main.m; sourceTree = SOURCE_ROOT; };
 		143F9FF7139756270008ACE0 /* PopupViewTest_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopupViewTest_Prefix.pch; path = PopupViewTest/PopupViewTest_Prefix.pch; sourceTree = SOURCE_ROOT; };
@@ -36,8 +41,6 @@
 		143F9FFA139756270008ACE0 /* PopupViewTestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopupViewTestAppDelegate.m; path = PopupViewTest/PopupViewTestAppDelegate.m; sourceTree = SOURCE_ROOT; };
 		143F9FFB139756270008ACE0 /* PopupViewTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopupViewTestViewController.h; path = PopupViewTest/PopupViewTestViewController.h; sourceTree = SOURCE_ROOT; };
 		143F9FFC139756270008ACE0 /* PopupViewTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopupViewTestViewController.m; path = PopupViewTest/PopupViewTestViewController.m; sourceTree = SOURCE_ROOT; };
-		143FA0051397562D0008ACE0 /* SNPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNPopupView.h; sourceTree = "<group>"; };
-		143FA0061397562D0008ACE0 /* SNPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNPopupView.m; sourceTree = "<group>"; };
 		14B7E42213BD9DB5007C8935 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "PopupViewTest/Resources/iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		14FDAB9713977B3E008BF9D5 /* 2tchSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2tchSmall.png; sourceTree = "<group>"; };
 		14FDAB9913977B3E008BF9D5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -125,8 +128,10 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				143FA0051397562D0008ACE0 /* SNPopupView.h */,
-				143FA0061397562D0008ACE0 /* SNPopupView.m */,
+				1410EF4D144070F600C034A5 /* SNPopupView.h */,
+				1410EF4E144070F600C034A5 /* SNPopupView.m */,
+				1410EF501440711D00C034A5 /* SNPopupView+UsingPrivateMethod.h */,
+				1410EF511440711D00C034A5 /* SNPopupView+UsingPrivateMethod.m */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				14FDAB9613977B3E008BF9D5 /* Resources */,
 				14B7E42113BD9DB1007C8935 /* iPad */,
@@ -219,7 +224,8 @@
 				143F9FFF139756270008ACE0 /* main.m in Sources */,
 				143FA002139756270008ACE0 /* PopupViewTestAppDelegate.m in Sources */,
 				143FA003139756270008ACE0 /* PopupViewTestViewController.m in Sources */,
-				143FA0071397562D0008ACE0 /* SNPopupView.m in Sources */,
+				1410EF4F144070F600C034A5 /* SNPopupView.m in Sources */,
+				1410EF521440711D00C034A5 /* SNPopupView+UsingPrivateMethod.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

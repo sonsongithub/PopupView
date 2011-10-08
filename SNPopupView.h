@@ -30,6 +30,22 @@
 
 #import <UIKit/UIKit.h>
 
+#define SHADOW_OFFSET					CGSizeMake(10, 10)
+#define CONTENT_OFFSET					CGSizeMake(10, 10)
+#define POPUP_ROOT_SIZE					CGSizeMake(20, 10)
+
+#define HORIZONTAL_SAFE_MARGIN			30
+
+#define POPUP_ANIMATION_DURATION		0.3
+#define DISMISS_ANIMATION_DURATION		0.2
+
+#define DEFAULT_TITLE_SIZE				20
+
+#define ALPHA							0.6
+
+#define BAR_BUTTON_ITEM_UPPER_MARGIN	10
+#define BAR_BUTTON_ITEM_BOTTOM_MARGIN	5
+
 @class TouchPeekView;
 
 typedef enum {
@@ -90,13 +106,9 @@ typedef enum {
 
 - (void)showAtPoint:(CGPoint)p inView:(UIView*)inView;
 - (void)showAtPoint:(CGPoint)p inView:(UIView*)inView animated:(BOOL)animated;
-- (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView;
-- (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated;
 
 - (void)presentModalAtPoint:(CGPoint)p inView:(UIView*)inView;
 - (void)presentModalAtPoint:(CGPoint)p inView:(UIView*)inView animated:(BOOL)animated;
-- (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView;
-- (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated;
 
 - (void)dismiss;
 - (void)dismiss:(BOOL)animtaed;

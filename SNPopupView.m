@@ -32,22 +32,6 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#define SHADOW_OFFSET					CGSizeMake(10, 10)
-#define CONTENT_OFFSET					CGSizeMake(10, 10)
-#define POPUP_ROOT_SIZE					CGSizeMake(20, 10)
-
-#define HORIZONTAL_SAFE_MARGIN			30
-
-#define POPUP_ANIMATION_DURATION		0.3
-#define DISMISS_ANIMATION_DURATION		0.2
-
-#define DEFAULT_TITLE_SIZE				20
-
-#define ALPHA							0.6
-
-#define BAR_BUTTON_ITEM_UPPER_MARGIN	10
-#define BAR_BUTTON_ITEM_BOTTOM_MARGIN	5
-
 @interface TouchPeekView : UIView {
 	SNPopupView *delegate;
 }
@@ -194,59 +178,7 @@
 	[self showAtPoint:[inView convertPoint:p toView:[[UIApplication sharedApplication] keyWindow]] inView:[[UIApplication sharedApplication] keyWindow] animated:animated];
 }
 
-- (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView {
-	animatedWhenAppering = YES;
-	[self createAndAttachTouchPeekView];
-	[self showFromBarButtonItem:barButtonItem inView:[[UIApplication sharedApplication] keyWindow]];
-}
-
-- (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated {
-	animatedWhenAppering = animated;
-	[self createAndAttachTouchPeekView];
-	[self showFromBarButtonItem:barButtonItem inView:[[UIApplication sharedApplication] keyWindow] animated:animated];
-}
-
 #pragma mark - Show as normal view
-
-- (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView {
-	[self showFromBarButtonItem:barButtonItem inView:inView animated:YES];
-}
-
-- (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated {
-	
-	if(![barButtonItem respondsToSelector:@selector(view)]) {
-		// error
-		return;
-	}
-	
-	UIView *targetView = (UIView *)[barButtonItem performSelector:@selector(view)];
-	UIView *targetSuperview = [targetView superview];
-	
-	BOOL isOnNavigationBar = YES;
-	
-	if ([targetSuperview isKindOfClass:[UINavigationBar class]]) {
-		isOnNavigationBar = YES;
-	}
-	else if ([targetSuperview isKindOfClass:[UIToolbar class]]) {
-		isOnNavigationBar = NO;
-	}
-	else {
-		// error
-		return;
-	}
-	
-	CGRect rect = [targetSuperview convertRect:targetView.frame toView:inView];
-	
-	CGPoint p;
-	p.x = rect.origin.x + (int)rect.size.width/2;
-	
-	if (isOnNavigationBar)
-		p.y = rect.origin.y + rect.size.height + BAR_BUTTON_ITEM_UPPER_MARGIN;
-	else
-		p.y = rect.origin.y - BAR_BUTTON_ITEM_BOTTOM_MARGIN;
-	
-	[self showAtPoint:p inView:inView animated:animated];
-}
 
 - (void)showAtPoint:(CGPoint)p inView:(UIView*)inView {
 	[self showAtPoint:p inView:inView animated:NO];

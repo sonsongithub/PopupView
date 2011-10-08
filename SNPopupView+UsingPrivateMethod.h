@@ -1,8 +1,8 @@
 /*
  * PopupView
- * PopupViewTestViewController.m
+ * SNPopupView+UsingPrivateMethod.h
  *
- * Copyright (c) Yuichi YOSHIDA, 10/12/07.
+ * Copyright (c) Yuichi YOSHIDA, 11/10/10.
  * All rights reserved.
  * 
  * BSD License
@@ -28,23 +28,14 @@
  * HE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
-
 #import "SNPopupView.h"
-#import "SNPopupView+UsingPrivateMethod.h"
 
-@interface PopupViewTestViewController : UIViewController <SNPopupViewModalDelegate> {
-	SNPopupView		*popup;
-	NSArray			*messages;
-	int				currentMessageIndex;
-	IBOutlet UIView *testContentView;
-	
-	IBOutlet UISwitch *animationSwitch;
-	IBOutlet UISwitch *modalSwitch;
-}
+@interface SNPopupView(UsingPrivateMethod)
 
-- (IBAction)pushButton:(id)sender;
-- (void)didDismissModal:(SNPopupView*)popupview;
-- (void)didTouchPopupView:(SNPopupView*)sender;
+- (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView;
+- (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated;
+
+- (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView;
+- (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated;
+
 @end
-
