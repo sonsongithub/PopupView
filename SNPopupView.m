@@ -56,7 +56,8 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	DNSLogMethod
-	[delegate dismissModal];
+	if ([delegate shouldBeDismissedFor:touches withEvent:event])
+		[delegate dismissModal];
 }
 
 @end
@@ -65,8 +66,7 @@
 
 @synthesize title, image, contentView, delegate;
 
-#pragma mark -
-#pragma mark Prepare
+#pragma mark - Prepare
 
 - (void)setupGradientColors {		
 	CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
@@ -441,6 +441,13 @@
 	[self.layer addAnimation:group forKey:@"hoge"];
 }
 
+- (BOOL)shouldBeDismissedFor:(NSSet *)touches withEvent:(UIEvent *)event {
+	UITouch *touch = [touches anyObject];
+	
+	CGPoint p = [touch locationInView:self];
+	return !CGRectContainsPoint(contentRect, p);
+}
+
 - (void)dismissModal {
 	if ([peekView superview]) 
 		[delegate didDismissModal:self];
@@ -592,6 +599,12 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	DNSLogMethod
+	
+	if ([self shouldBeDismissedFor:touches withEvent:event] && peekView != nil) {
+		[self dismissModal];
+		return;
+	}
+	
 	if ([target respondsToSelector:action]) {
 		[target performSelector:action withObject:self];
 	}

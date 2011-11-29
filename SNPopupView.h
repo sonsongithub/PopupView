@@ -30,6 +30,8 @@
 
 #import <UIKit/UIKit.h>
 
+//#define _CONFIRM_REGION
+
 #define SHADOW_OFFSET					CGSizeMake(10, 10)
 #define CONTENT_OFFSET					CGSizeMake(10, 10)
 #define POPUP_ROOT_SIZE					CGSizeMake(20, 10)
@@ -110,6 +112,7 @@ typedef enum {
 - (void)presentModalAtPoint:(CGPoint)p inView:(UIView*)inView;
 - (void)presentModalAtPoint:(CGPoint)p inView:(UIView*)inView animated:(BOOL)animated;
 
+- (BOOL)shouldBeDismissedFor:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)dismiss;
 - (void)dismiss:(BOOL)animtaed;
 - (void)dismissModal;
