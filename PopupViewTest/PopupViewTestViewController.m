@@ -37,15 +37,15 @@
 	
 	if (popup == nil) {
 		if (currentMessageIndex == 0) {
-			popup = [[SNPopupView alloc] initWithContentView:testContentView contentSize:CGSizeMake(203, 63)];
+			popup = [[UZPopupView alloc] initWithContentView:testContentView contentSize:CGSizeMake(203, 63)];
 			currentMessageIndex++;
 		}
 		else if (currentMessageIndex == 1) {
-			popup = [[SNPopupView alloc] initWithString:@"test message" withFontOfSize:29];
+			popup = [[UZPopupView alloc] initWithString:@"test message" withFontOfSize:29];
 			currentMessageIndex++;
 		}
 		else if (currentMessageIndex == 2) {
-			popup = [[SNPopupView alloc] initWithImage:[UIImage imageNamed:@"2tchSmall.png"]];
+			popup = [[UZPopupView alloc] initWithImage:[UIImage imageNamed:@"2tchSmall.png"]];
 			currentMessageIndex = 0;
 		}
 		if (modalSwitch.on)
@@ -62,12 +62,12 @@
 	}
 }
 
-- (void)didTouchPopupView:(SNPopupView*)sender {
+- (void)didTouchPopupView:(UZPopupView*)sender {
 	DNSLogMethod
 	DNSLog(@"%@", sender);
 }
 
-- (void)didDismissModal:(SNPopupView*)popupview {
+- (void)didDismissModal:(UZPopupView*)popupview {
 	DNSLogMethod
 	if (popupview == popup) {
 		popup = nil;
@@ -79,15 +79,15 @@
 	
 	if (popup == nil) {
 		if (currentMessageIndex == 0) {
-			popup = [[SNPopupView alloc] initWithImage:[UIImage imageNamed:@"2tchSmall.png"]];
+			popup = [[UZPopupView alloc] initWithImage:[UIImage imageNamed:@"2tchSmall.png"]];
 			currentMessageIndex++;
 		}
 		else if (currentMessageIndex == 1) {
-			popup = [[SNPopupView alloc] initWithString:@"test message" withFontOfSize:16];
+			popup = [[UZPopupView alloc] initWithString:@"test message" withFontOfSize:16];
 			currentMessageIndex++;
 		}
 		else if (currentMessageIndex == 2) {
-			popup = [[SNPopupView alloc] initWithContentView:testContentView contentSize:CGSizeMake(203, 63)];
+			popup = [[UZPopupView alloc] initWithContentView:testContentView contentSize:CGSizeMake(203, 63)];
 			currentMessageIndex = 0;
 		}
 		if (modalSwitch.on)

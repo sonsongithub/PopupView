@@ -1,6 +1,6 @@
 /*
  * PopupView
- * SNPopupView.h
+ * UZPopupView.h
  *
  * Copyright (c) Yuichi YOSHIDA, 10/12/07.
  * All rights reserved.
@@ -51,21 +51,21 @@
 @class TouchPeekView;
 
 typedef enum {
-	SNPopupViewUp		= 1,
-	SNPopupViewDown		= 2,
-	SNPopupViewRight	= 1 << 8,
-	SNPopupViewLeft		= 2 << 8,
-}SNPopupViewDirection;
+	UZPopupViewUp		= 1,
+	UZPopupViewDown		= 2,
+	UZPopupViewRight	= 1 << 8,
+	UZPopupViewLeft		= 2 << 8,
+}UZPopupViewDirection;
 
-@class SNPopupView;
+@class UZPopupView;
 
-@protocol SNPopupViewModalDelegate <NSObject>
+@protocol UZPopupViewModalDelegate <NSObject>
 
-- (void)didDismissModal:(SNPopupView*)popupview;
+- (void)didDismissModal:(UZPopupView*)popupview;
 
 @end
 
-@interface SNPopupView : UIView {
+@interface UZPopupView : UIView {
 	CGGradientRef gradient;
 	CGGradientRef gradient2;
 	
@@ -87,19 +87,19 @@ typedef enum {
 	UIView		*contentView;
 	
 	float		horizontalOffset;
-	SNPopupViewDirection	direction;
+	UZPopupViewDirection	direction;
 	id			target;
 	SEL			action;
 	
 	TouchPeekView	*peekView;
-	id<SNPopupViewModalDelegate>delegate;
+	id<UZPopupViewModalDelegate>delegate;
 	
 	BOOL		animatedWhenAppering;
 }
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) UIImage *image;
 @property (nonatomic, readonly) UIView *contentView;
-@property (nonatomic, assign) id <SNPopupViewModalDelegate> delegate;
+@property (nonatomic, assign) id <UZPopupViewModalDelegate> delegate;
 
 - (id)initWithString:(NSString*)newValue withFontOfSize:(float)newFontSize;
 - (id)initWithString:(NSString*)newValue;
@@ -119,3 +119,17 @@ typedef enum {
 
 - (void)addTarget:(id)target action:(SEL)action;
 @end
+
+#ifdef _UsingPrivateMethod
+
+@interface UZPopupView(UsingPrivateMethod)
+
+- (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView;
+- (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated;
+
+- (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView;
+- (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated;
+
+@end
+
+#endif

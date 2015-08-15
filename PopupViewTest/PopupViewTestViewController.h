@@ -30,11 +30,10 @@
 
 #import <UIKit/UIKit.h>
 
-#import "SNPopupView.h"
-#import "SNPopupView+UsingPrivateMethod.h"
+#import "UZPopupView.h"
 
-@interface PopupViewTestViewController : UIViewController <SNPopupViewModalDelegate> {
-	SNPopupView		*popup;
+@interface PopupViewTestViewController : UIViewController <UZPopupViewModalDelegate> {
+	UZPopupView		*popup;
 	NSArray			*messages;
 	int				currentMessageIndex;
 	IBOutlet UIView *testContentView;
@@ -44,7 +43,7 @@
 }
 
 - (IBAction)pushButton:(id)sender;
-- (void)didDismissModal:(SNPopupView*)popupview;
-- (void)didTouchPopupView:(SNPopupView*)sender;
+- (void)didDismissModal:(UZPopupView*)popupview;
+- (void)didTouchPopupView:(UZPopupView*)sender;
 @end
 

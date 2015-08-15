@@ -1,6 +1,6 @@
 /*
  * PopupView
- * SNPopupView.m
+ * UZPopupView.m
  *
  * Copyright (c) Yuichi YOSHIDA, 10/12/07.
  * All rights reserved.
@@ -28,17 +28,17 @@
  * HE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "SNPopupView.h"
+#import "UZPopupView.h"
 
 #import <QuartzCore/QuartzCore.h>
 
 @interface TouchPeekView : UIView {
-	SNPopupView *delegate;
+	UZPopupView *delegate;
 }
-@property (nonatomic, assign) SNPopupView *delegate;
+@property (nonatomic, assign) UZPopupView *delegate;
 @end
 
-@interface SNPopupView(Private)
+@interface UZPopupView(Private)
 - (void)popup;
 @end
 	
@@ -62,7 +62,7 @@
 
 @end
 
-@implementation SNPopupView
+@implementation UZPopupView
 
 @synthesize title, image, contentView, delegate;
 
@@ -186,13 +186,13 @@
 
 - (void)showAtPoint:(CGPoint)p inView:(UIView*)inView animated:(BOOL)animated {
 	if ((p.y - contentBounds.size.height - POPUP_ROOT_SIZE.height - 2 * CONTENT_OFFSET.height - SHADOW_OFFSET.height) < 0) {
-		direction = SNPopupViewDown;
+		direction = UZPopupViewDown;
 	}
 	else {
-		direction = SNPopupViewUp;
+		direction = UZPopupViewUp;
 	}
 	
-	if (direction & SNPopupViewUp) {
+	if (direction & UZPopupViewUp) {
 
 		pointToBeShown = p;
 		
@@ -223,7 +223,7 @@
 		
 		// calc horizontal offset
 		if (viewRect.origin.x < 0) {
-			direction = direction | SNPopupViewRight;
+			direction = direction | UZPopupViewRight;
 			horizontalOffset = viewRect.origin.x;
 			
 			if (viewRect.origin.x - horizontalOffset < pointToBeShown.x - HORIZONTAL_SAFE_MARGIN) {
@@ -236,7 +236,7 @@
 			popupRect.origin.x -= horizontalOffset;
 		}
 		else if (left_viewRect > inView.frame.size.width) {
-			direction = direction | SNPopupViewLeft;
+			direction = direction | UZPopupViewLeft;
 			horizontalOffset = inView.frame.size.width - left_viewRect;
 			
 			if (left_viewRect + horizontalOffset > pointToBeShown.x + HORIZONTAL_SAFE_MARGIN) {
@@ -279,7 +279,7 @@
 		
 		// calc horizontal offset
 		if (viewRect.origin.x < 0) {
-			direction = direction | SNPopupViewRight;
+			direction = direction | UZPopupViewRight;
 			horizontalOffset = viewRect.origin.x;
 			
 			if (viewRect.origin.x - horizontalOffset < pointToBeShown.x - HORIZONTAL_SAFE_MARGIN) {
@@ -292,7 +292,7 @@
 			popupRect.origin.x -= horizontalOffset;
 		}
 		else if (left_viewRect > inView.frame.size.width) {
-			direction = direction | SNPopupViewLeft;
+			direction = direction | UZPopupViewLeft;
 			horizontalOffset = inView.frame.size.width - left_viewRect;
 			
 			if (left_viewRect + horizontalOffset > pointToBeShown.x + HORIZONTAL_SAFE_MARGIN) {
@@ -384,8 +384,8 @@
 	CAKeyframeAnimation *positionAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
 	CATransform3D tm1, tm2, tm3, tm4, tm5;
 	
-	if (direction & SNPopupViewUp) {
-		if (direction & SNPopupViewLeft)
+	if (direction & UZPopupViewUp) {
+		if (direction & UZPopupViewLeft)
 			horizontalOffset = -horizontalOffset;
 		tm1 = CATransform3DMakeTranslation(horizontalOffset * (1 - r1), y_offset * (1 - r1), 0);
 		tm2 = CATransform3DMakeTranslation(horizontalOffset * (1 - r2), y_offset * (1 - r2), 0);
@@ -394,7 +394,7 @@
 		tm5 = CATransform3DMakeTranslation(horizontalOffset * (1 - r5), y_offset * (1 - r5), 0);
 	}
 	else {
-		if (direction & SNPopupViewLeft)
+		if (direction & UZPopupViewLeft)
 			horizontalOffset = -horizontalOffset;		
 		tm1 = CATransform3DMakeTranslation(horizontalOffset * (1 - r1), -y_offset * (1 - r1), 0);
 		tm2 = CATransform3DMakeTranslation(horizontalOffset * (1 - r2), -y_offset * (1 - r2), 0);
@@ -484,7 +484,7 @@
 							   nil];
 	
 	CATransform3D tm1, tm2;
-	if (direction & SNPopupViewUp) {
+	if (direction & UZPopupViewUp) {
 		tm1 = CATransform3DMakeTranslation(horizontalOffset * (1 - r1), y_offset * (1 - r1), 0);
 		tm2 = CATransform3DMakeTranslation(horizontalOffset * (1 - r2), y_offset * (1 - r2), 0);
 	}
@@ -520,7 +520,7 @@
 - (void)makePathCircleCornerRect:(CGRect)rect radius:(float)radius popPoint:(CGPoint)popPoint {
     CGContextRef context = UIGraphicsGetCurrentContext();
 	
-	if (direction & SNPopupViewUp) {
+	if (direction & UZPopupViewUp) {
 		rect.size.height -= POPUP_ROOT_SIZE.height;
 		
 		// get points
@@ -636,7 +636,7 @@
 	CGContextSaveGState(context);
 	[self makePathCircleCornerRect:popupRect radius:10 popPoint:pointToBeShown];
 	CGContextClip(context);
-	if (direction & SNPopupViewUp) {
+	if (direction & UZPopupViewUp) {
 		CGContextDrawLinearGradient(context, gradient, CGPointMake(0, popupRect.origin.y), CGPointMake(0, popupRect.origin.y + (int)(popupRect.size.height-POPUP_ROOT_SIZE.height)/2), 0);
 		CGContextDrawLinearGradient(context, gradient2, CGPointMake(0, popupRect.origin.y + (int)(popupRect.size.height-POPUP_ROOT_SIZE.height)/2), CGPointMake(0, popupRect.origin.y + popupRect.size.height-POPUP_ROOT_SIZE.height), 0);
 	}
@@ -672,5 +672,68 @@
     [super dealloc];
 }
 
+@end
+
+#ifdef _UsingPrivateMethod
+
+@interface UZPopupView(UsingPrivateMethod_Private)
+- (void)createAndAttachTouchPeekView;
+@end
+
+@implementation UZPopupView(UsingPrivateMethod)
+
+- (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView {
+	animatedWhenAppering = YES;
+	[self createAndAttachTouchPeekView];
+	[self showFromBarButtonItem:barButtonItem inView:[[UIApplication sharedApplication] keyWindow]];
+}
+
+- (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated {
+	animatedWhenAppering = animated;
+	[self createAndAttachTouchPeekView];
+	[self showFromBarButtonItem:barButtonItem inView:[[UIApplication sharedApplication] keyWindow] animated:animated];
+}
+
+- (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView {
+	[self showFromBarButtonItem:barButtonItem inView:inView animated:YES];
+}
+
+- (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated {
+	
+	if(![barButtonItem respondsToSelector:@selector(view)]) {
+		// error
+		return;
+	}
+	
+	UIView *targetView = (UIView *)[barButtonItem performSelector:@selector(view)];
+	UIView *targetSuperview = [targetView superview];
+	
+	BOOL isOnNavigationBar = YES;
+	
+	if ([targetSuperview isKindOfClass:[UINavigationBar class]]) {
+		isOnNavigationBar = YES;
+	}
+	else if ([targetSuperview isKindOfClass:[UIToolbar class]]) {
+		isOnNavigationBar = NO;
+	}
+	else {
+		// error
+		return;
+	}
+	
+	CGRect rect = [targetSuperview convertRect:targetView.frame toView:inView];
+	
+	CGPoint p;
+	p.x = rect.origin.x + (int)rect.size.width/2;
+	
+	if (isOnNavigationBar)
+		p.y = rect.origin.y + rect.size.height + BAR_BUTTON_ITEM_UPPER_MARGIN;
+	else
+		p.y = rect.origin.y - BAR_BUTTON_ITEM_BOTTOM_MARGIN;
+	
+	[self showAtPoint:p inView:inView animated:animated];
+}
 
 @end
+
+#endif
