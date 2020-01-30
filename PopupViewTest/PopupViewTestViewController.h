@@ -30,7 +30,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "UZPopupView.h"
+#import <UZPopupView/UZPopupView.h>
 
 @interface PopupViewTestViewController : UIViewController <UZPopupViewModalDelegate> {
 	UZPopupView		*popup;

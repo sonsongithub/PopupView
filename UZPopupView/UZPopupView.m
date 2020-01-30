@@ -29,8 +29,12 @@
  */
 
 #import "UZPopupView.h"
+#import <objc/runtime.h>
 
 #import <QuartzCore/QuartzCore.h>
+
+#define DNSLogMethod()   do { NSLog(@"[%s] %@", class_getName([self class]), NSStringFromSelector(_cmd)); } while(0)
+
 
 @interface TouchPeekView : UIView {
 }
@@ -52,7 +56,7 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	DNSLogMethod
+    DNSLogMethod();
 	if ([_delegate shouldBeDismissedFor:touches withEvent:event])
 		[_delegate dismissModal];
 }
@@ -594,7 +598,7 @@
 #pragma mark - Override
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	DNSLogMethod
+    DNSLogMethod();
 	
 	if ([self shouldBeDismissedFor:touches withEvent:event] && peekView != nil) {
 		[self dismissModal];
@@ -657,7 +661,7 @@
 #pragma mark - dealloc
 
 - (void)dealloc {
-	DNSLogMethod
+    DNSLogMethod();
 	CGGradientRelease(gradient);
 	CGGradientRelease(gradient2);
 }
