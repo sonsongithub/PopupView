@@ -92,14 +92,13 @@ typedef enum {
 	SEL			action;
 	
 	TouchPeekView	*peekView;
-	id<UZPopupViewModalDelegate>delegate;
 	
 	BOOL		animatedWhenAppering;
 }
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) UIImage *image;
 @property (nonatomic, readonly) UIView *contentView;
-@property (nonatomic, assign) id <UZPopupViewModalDelegate> delegate;
+@property (nonatomic, weak) id <UZPopupViewModalDelegate> delegate;
 
 - (id)initWithString:(NSString*)newValue withFontOfSize:(float)newFontSize;
 - (id)initWithString:(NSString*)newValue;
@@ -120,8 +119,6 @@ typedef enum {
 - (void)addTarget:(id)target action:(SEL)action;
 @end
 
-#ifdef _UsingPrivateMethod
-
 @interface UZPopupView(UsingPrivateMethod)
 
 - (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView;
@@ -131,5 +128,3 @@ typedef enum {
 - (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated;
 
 @end
-
-#endif

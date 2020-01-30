@@ -33,9 +33,8 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface TouchPeekView : UIView {
-	UZPopupView *delegate;
 }
-@property (nonatomic, assign) UZPopupView *delegate;
+@property (nonatomic, weak) UZPopupView *delegate;
 @end
 
 @interface UZPopupView(Private)
@@ -43,8 +42,6 @@
 @end
 	
 @implementation TouchPeekView
-
-@synthesize delegate;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -56,8 +53,8 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	DNSLogMethod
-	if ([delegate shouldBeDismissedFor:touches withEvent:event])
-		[delegate dismissModal];
+	if ([_delegate shouldBeDismissedFor:touches withEvent:event])
+		[_delegate dismissModal];
 }
 
 @end
@@ -115,7 +112,7 @@
 - (id) initWithImage:(UIImage*)newImage {
 	self = [super init];
 	if (self != nil) {
-		image = [newImage retain];
+		image = newImage;
 		
         // Initialization code
 		[self setBackgroundColor:[UIColor clearColor]];
@@ -132,7 +129,7 @@
 - (id) initWithContentView:(UIView*)newContentView contentSize:(CGSize)contentSize {
 	self = [super init];
 	if (self != nil) {
-		contentView = [newContentView retain];
+		contentView = newContentView;
 		
         // Initialization code
 		[self setBackgroundColor:[UIColor clearColor]];
@@ -158,7 +155,6 @@
 	UIWindow *window = [[UIApplication sharedApplication] keyWindow];
 
 	[peekView removeFromSuperview];
-	[peekView release];
 	peekView = nil;
 	peekView = [[TouchPeekView alloc] initWithFrame:window.frame];
 	[peekView setDelegate:self];
@@ -664,17 +660,10 @@
 	DNSLogMethod
 	CGGradientRelease(gradient);
 	CGGradientRelease(gradient2);
-	
-	[peekView release];
-	[title release];
-	[image release];
-	[contentView release];
-    [super dealloc];
 }
 
 @end
 
-#ifdef _UsingPrivateMethod
 
 @interface UZPopupView(UsingPrivateMethod_Private)
 - (void)createAndAttachTouchPeekView;
@@ -735,5 +724,3 @@
 }
 
 @end
-
-#endif
