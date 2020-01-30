@@ -63,6 +63,9 @@
 
 @end
 
+@interface UZPopupView () <CAAnimationDelegate>
+@end
+
 @implementation UZPopupView
 
 @synthesize title, image, contentView, delegate;
@@ -102,7 +105,7 @@
 		fontSize = newFontSize;
 		UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
 		
-		CGSize titleRenderingSize = [title sizeWithFont:font];
+        CGSize titleRenderingSize = [title sizeWithAttributes:@{NSFontAttributeName: font}];
 		
 		contentBounds = CGRectMake(0, 0, 0, 0);
 		contentBounds.size = titleRenderingSize;
@@ -606,7 +609,13 @@
 	}
 	
 	if ([target respondsToSelector:action]) {
+#if 1
+        IMP imp = [target methodForSelector:action];
+        void (*func)(id, SEL, id) = (void *)imp;
+        func(target, action, self);
+#else
 		[target performSelector:action withObject:self];
+#endif
 	}
 }
 
@@ -651,7 +660,8 @@
 	if ([title length]) {
 		CGContextSetRGBFillColor(context, 1, 1, 1, 1);
 		UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
-		[title drawInRect:contentRect withFont:font];
+        UIColor *color = [UIColor whiteColor];
+        [title drawInRect:contentRect withAttributes:@{NSFontAttributeName:font, NSForegroundColorAttributeName:color}];
 	}
 	if (image) {
 		[image drawInRect:contentRect];

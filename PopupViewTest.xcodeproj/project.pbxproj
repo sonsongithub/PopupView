@@ -26,6 +26,7 @@
 		3A0DCD7C23E1FF8E002FDF2D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0DCD7B23E1FF8E002FDF2D /* Default-568h@2x.png */; };
 		3A0DCDAB23E26D51002FDF2D /* UZPopupView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0DCDA723E26CF9002FDF2D /* UZPopupView.framework */; };
 		3A0DCDAC23E26D51002FDF2D /* UZPopupView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0DCDA723E26CF9002FDF2D /* UZPopupView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3A4456CC23E2825F00DE4D1F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3A4456CB23E2825F00DE4D1F /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3A0DCD7B23E1FF8E002FDF2D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3A0DCDA223E26CF9002FDF2D /* UZPopupView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = UZPopupView.xcodeproj; sourceTree = SOURCE_ROOT; };
+		3A4456CB23E2825F00DE4D1F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				3A4456CB23E2825F00DE4D1F /* README.md */,
 				3A0DCDA223E26CF9002FDF2D /* UZPopupView.xcodeproj */,
 				3A0DCD7B23E1FF8E002FDF2D /* Default-568h@2x.png */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -268,6 +271,7 @@
 				14FDABA513977B3E008BF9D5 /* icon72x72.png in Resources */,
 				14FDABA613977B3E008BF9D5 /* MainWindow.xib in Resources */,
 				14FDABA713977B3E008BF9D5 /* PopupViewTestViewController.xib in Resources */,
+				3A4456CC23E2825F00DE4D1F /* README.md in Resources */,
 				14B7E42313BD9DB5007C8935 /* MainWindow-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
