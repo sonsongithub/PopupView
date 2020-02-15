@@ -55,81 +55,47 @@ typedef enum {
 	UZPopupViewDown		= 2,
 	UZPopupViewRight	= 1 << 8,
 	UZPopupViewLeft		= 2 << 8,
-}UZPopupViewDirection;
+} UZPopupViewDirection;
 
 @class UZPopupView;
 
 @protocol UZPopupViewModalDelegate <NSObject>
-
 - (void)didDismissModal:(UZPopupView*)popupview;
-
 @end
 
-@interface UZPopupView : UIView {
-	CGGradientRef gradient;
-	CGGradientRef gradient2;
-	
-	CGRect		contentRect;
-	CGRect		contentBounds;
-	
-	CGRect		popupRect;
-	CGRect		popupBounds;
-	
-	CGRect		viewRect;
-	CGRect		viewBounds;
-	
-	CGPoint		pointToBeShown;
-	
-	NSString	*title;
-	UIImage		*image;
-	float		fontSize;
-	
-	UIView		*contentView;
-	
-	float		horizontalOffset;
-	UZPopupViewDirection	direction;
-	id			target;
-	SEL			action;
-	
-	TouchPeekView	*peekView;
-	id<UZPopupViewModalDelegate>delegate;
-	
-	BOOL		animatedWhenAppering;
-}
+
+@interface UZPopupView : UIView 
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) UIImage *image;
 @property (nonatomic, readonly) UIView *contentView;
-@property (nonatomic, assign) id <UZPopupViewModalDelegate> delegate;
+@property (nonatomic, weak) id <UZPopupViewModalDelegate> delegate;
 
-- (id)initWithString:(NSString*)newValue withFontOfSize:(float)newFontSize;
-- (id)initWithString:(NSString*)newValue;
-- (id)initWithImage:(UIImage*)newImage;
-- (id)initWithContentView:(UIView*)newContentView contentSize:(CGSize)contentSize;
+- (instancetype) initWithString:(NSString*)newValue withFontOfSize:(float)newFontSize;
+- (instancetype) initWithString:(NSString*)newValue;
+- (instancetype) initWithImage:(UIImage*)newImage;
+- (instancetype) initWithContentView:(UIView*)newContentView contentSize:(CGSize)contentSize;
 
-- (void)showAtPoint:(CGPoint)p inView:(UIView*)inView;
-- (void)showAtPoint:(CGPoint)p inView:(UIView*)inView animated:(BOOL)animated;
+- (void) showAtPoint:(CGPoint)p inView:(UIView*)inView;
+- (void) showAtPoint:(CGPoint)p inView:(UIView*)inView animated:(BOOL)animated;
 
-- (void)presentModalAtPoint:(CGPoint)p inView:(UIView*)inView;
-- (void)presentModalAtPoint:(CGPoint)p inView:(UIView*)inView animated:(BOOL)animated;
+- (void) presentModalAtPoint:(CGPoint)p inView:(UIView*)inView;
+- (void) presentModalAtPoint:(CGPoint)p inView:(UIView*)inView animated:(BOOL)animated;
 
-- (BOOL)shouldBeDismissedFor:(NSSet *)touches withEvent:(UIEvent *)event;
-- (void)dismiss;
-- (void)dismiss:(BOOL)animtaed;
-- (void)dismissModal;
+- (BOOL) shouldBeDismissedFor:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void) dismiss;
+- (void) dismiss:(BOOL)animtaed;
+- (void) dismissModal;
 
-- (void)addTarget:(id)target action:(SEL)action;
+- (void) addTarget:(id)target action:(SEL)action;
 @end
 
-#ifdef _UsingPrivateMethod
 
 @interface UZPopupView(UsingPrivateMethod)
 
-- (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView;
-- (void)showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated;
+- (void) showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView;
+- (void) showFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated;
 
-- (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView;
-- (void)presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated;
+- (void) presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView;
+- (void) presentModalFromBarButtonItem:(UIBarButtonItem*)barButtonItem inView:(UIView*)inView animated:(BOOL)animated;
 
 @end
-
-#endif

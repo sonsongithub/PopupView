@@ -29,22 +29,19 @@
  */
 
 #import "UZPopupView.h"
+#import <objc/runtime.h>
 
 #import <QuartzCore/QuartzCore.h>
 
+#define DNSLogMethod()   do { NSLog(@"[%s] %@", class_getName([self class]), NSStringFromSelector(_cmd)); } while(0)
+
+
 @interface TouchPeekView : UIView {
-	UZPopupView *delegate;
 }
-@property (nonatomic, assign) UZPopupView *delegate;
+@property (nonatomic, weak) UZPopupView *delegate;
 @end
 
-@interface UZPopupView(Private)
-- (void)popup;
-@end
-	
 @implementation TouchPeekView
-
-@synthesize delegate;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -55,16 +52,43 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	DNSLogMethod
-	if ([delegate shouldBeDismissedFor:touches withEvent:event])
-		[delegate dismissModal];
+    DNSLogMethod();
+    if ([_delegate shouldBeDismissedFor:touches withEvent:event]) {
+		[_delegate dismissModal];
+    }
 }
 
 @end
 
-@implementation UZPopupView
+@interface UZPopupView () <CAAnimationDelegate>
+@end
 
-@synthesize title, image, contentView, delegate;
+@implementation UZPopupView {
+    CGGradientRef gradient;
+    CGGradientRef gradient2;
+    
+    CGRect        contentRect;
+    CGRect        contentBounds;
+    
+    CGRect        popupRect;
+    CGRect        popupBounds;
+    
+    CGRect        viewRect;
+    CGRect        viewBounds;
+    
+    CGPoint        pointToBeShown;
+    
+    float        fontSize;
+    
+    float        horizontalOffset;
+    UZPopupViewDirection    direction;
+    id            target;
+    SEL            action;
+    
+    TouchPeekView    *peekView;
+    
+    BOOL        animatedWhenAppering;
+}
 
 #pragma mark - Prepare
 
@@ -86,14 +110,14 @@
 	CGColorSpaceRelease(rgb);
 }
 
-- (id) initWithString:(NSString*)newValue {
+- (instancetype) initWithString:(NSString*)newValue {
 	return [self initWithString:newValue withFontOfSize:DEFAULT_TITLE_SIZE];
 }
 
-- (id) initWithString:(NSString*)newValue withFontOfSize:(float)newFontSize {
+- (instancetype) initWithString:(NSString*)newValue withFontOfSize:(float)newFontSize {
 	self = [super init];
 	if (self != nil) {
-		title = [newValue copy];
+		_title = [newValue copy];
 		
         // Initialization code
 		[self setBackgroundColor:[UIColor clearColor]];
@@ -101,38 +125,36 @@
 		fontSize = newFontSize;
 		UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
 		
-		CGSize titleRenderingSize = [title sizeWithFont:font];
+        CGSize titleRenderingSize = [_title sizeWithAttributes:@{NSFontAttributeName: font}];
 		
 		contentBounds = CGRectMake(0, 0, 0, 0);
 		contentBounds.size = titleRenderingSize;
 		
 		[self setupGradientColors];
-		
 	}
 	return self;
 }
 
-- (id) initWithImage:(UIImage*)newImage {
+- (instancetype) initWithImage:(UIImage*)newImage {
 	self = [super init];
 	if (self != nil) {
-		image = [newImage retain];
+		_image = newImage;
 		
         // Initialization code
 		[self setBackgroundColor:[UIColor clearColor]];
 		
 		contentBounds = CGRectMake(0, 0, 0, 0);
-		contentBounds.size = image.size;
+		contentBounds.size = _image.size;
 		
 		[self setupGradientColors];
-		
 	}
 	return self;
 }
 
-- (id) initWithContentView:(UIView*)newContentView contentSize:(CGSize)contentSize {
+- (instancetype) initWithContentView:(UIView*)newContentView contentSize:(CGSize)contentSize {
 	self = [super init];
 	if (self != nil) {
-		contentView = [newContentView retain];
+		_contentView = newContentView;
 		
         // Initialization code
 		[self setBackgroundColor:[UIColor clearColor]];
@@ -158,7 +180,6 @@
 	UIWindow *window = [[UIApplication sharedApplication] keyWindow];
 
 	[peekView removeFromSuperview];
-	[peekView release];
 	peekView = nil;
 	peekView = [[TouchPeekView alloc] initWithFrame:window.frame];
 	[peekView setDelegate:self];
@@ -319,7 +340,6 @@
 	if (isAlreadyShown) {
 		[self setNeedsDisplay];
 		
-		
 		if (animated) {
 			[UIView beginAnimations:@"move" context:nil];
 			[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
@@ -334,15 +354,15 @@
 		[inView addSubview:self];
 		self.frame = viewRect;
 		
-		
-		if (contentView) {
-			[self addSubview:contentView];
-			[contentView setFrame:contentRect];
+		if (_contentView) {
+			[self addSubview:_contentView];
+			[_contentView setFrame:contentRect];
 		}
 		
 		// popup
-		if (animated)
+        if (animated) {
 			[self popup];
+        }
 	}
 }
 
@@ -450,7 +470,7 @@
 
 - (void)dismissModal {
 	if ([peekView superview]) 
-		[delegate didDismissModal:self];
+		[_delegate didDismissModal:self];
 	[peekView removeFromSuperview];
 	
 	[self dismiss:animatedWhenAppering];
@@ -598,7 +618,7 @@
 #pragma mark - Override
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	DNSLogMethod
+    DNSLogMethod();
 	
 	if ([self shouldBeDismissedFor:touches withEvent:event] && peekView != nil) {
 		[self dismissModal];
@@ -606,7 +626,13 @@
 	}
 	
 	if ([target respondsToSelector:action]) {
+#if 1
+        IMP imp = [target methodForSelector:action];
+        void (*func)(id, SEL, id) = (void *)imp;
+        func(target, action, self);
+#else
 		[target performSelector:action withObject:self];
+#endif
 	}
 }
 
@@ -637,48 +663,46 @@
 	[self makePathCircleCornerRect:popupRect radius:10 popPoint:pointToBeShown];
 	CGContextClip(context);
 	if (direction & UZPopupViewUp) {
-		CGContextDrawLinearGradient(context, gradient, CGPointMake(0, popupRect.origin.y), CGPointMake(0, popupRect.origin.y + (int)(popupRect.size.height-POPUP_ROOT_SIZE.height)/2), 0);
-		CGContextDrawLinearGradient(context, gradient2, CGPointMake(0, popupRect.origin.y + (int)(popupRect.size.height-POPUP_ROOT_SIZE.height)/2), CGPointMake(0, popupRect.origin.y + popupRect.size.height-POPUP_ROOT_SIZE.height), 0);
+        CGPoint pt1 = CGPointMake(0, popupRect.origin.y);
+        CGPoint pt2 = CGPointMake(0, popupRect.origin.y + (int)(popupRect.size.height-POPUP_ROOT_SIZE.height)/2);
+		CGContextDrawLinearGradient(context, gradient, pt1, pt2, 0);
+        CGPoint pt3 = pt2;
+        CGPoint pt4 = CGPointMake(0, popupRect.origin.y + popupRect.size.height-POPUP_ROOT_SIZE.height);
+		CGContextDrawLinearGradient(context, gradient2, pt3, pt4, 0);
 	}
 	else {
 		int h = (int)(popupRect.size.height - POPUP_ROOT_SIZE.height);
-		CGContextDrawLinearGradient(context, gradient, CGPointMake(0, popupRect.origin.y + POPUP_ROOT_SIZE.height), CGPointMake(0, popupRect.origin.y + h/2 + POPUP_ROOT_SIZE.height), 0);
-		CGContextDrawLinearGradient(context, gradient2, CGPointMake(0, popupRect.origin.y + h/2 + POPUP_ROOT_SIZE.height), CGPointMake(0, popupRect.origin.y + popupRect.size.height), 0);
+        CGPoint pt1 = CGPointMake(0, popupRect.origin.y + POPUP_ROOT_SIZE.height);
+        CGPoint pt2 = CGPointMake(0, popupRect.origin.y + h/2 + POPUP_ROOT_SIZE.height);
+		CGContextDrawLinearGradient(context, gradient, pt1, pt2, 0);
+        CGPoint pt3 = pt2;
+        CGPoint pt4 = CGPointMake(0, popupRect.origin.y + popupRect.size.height);
+		CGContextDrawLinearGradient(context, gradient2, pt3, pt4, 0);
 	}
 	CGContextRestoreGState(context);
 	
 	// draw content
-	if ([title length]) {
+	if ([_title length]) {
 		CGContextSetRGBFillColor(context, 1, 1, 1, 1);
 		UIFont *font = [UIFont boldSystemFontOfSize:fontSize];
-		[title drawInRect:contentRect withFont:font];
+        UIColor *color = [UIColor whiteColor];
+        [_title drawInRect:contentRect withAttributes:@{NSFontAttributeName:font, NSForegroundColorAttributeName:color}];
 	}
-	if (image) {
-		[image drawInRect:contentRect];
+	if (_image) {
+		[_image drawInRect:contentRect];
 	}
 }
 
 #pragma mark - dealloc
 
 - (void)dealloc {
-	DNSLogMethod
+    DNSLogMethod();
 	CGGradientRelease(gradient);
 	CGGradientRelease(gradient2);
-	
-	[peekView release];
-	[title release];
-	[image release];
-	[contentView release];
-    [super dealloc];
 }
 
 @end
 
-#ifdef _UsingPrivateMethod
-
-@interface UZPopupView(UsingPrivateMethod_Private)
-- (void)createAndAttachTouchPeekView;
-@end
 
 @implementation UZPopupView(UsingPrivateMethod)
 
@@ -735,5 +759,3 @@
 }
 
 @end
-
-#endif

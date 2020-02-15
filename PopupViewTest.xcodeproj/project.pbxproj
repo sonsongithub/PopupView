@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1410EF4F144070F600C034A5 /* UZPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410EF4E144070F600C034A5 /* UZPopupView.m */; };
 		1427AFDF127F02840082F84D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1427AFDE127F02840082F84D /* QuartzCore.framework */; };
 		143F9FFF139756270008ACE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 143F9FF5139756270008ACE0 /* main.m */; };
 		143FA002139756270008ACE0 /* PopupViewTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 143F9FFA139756270008ACE0 /* PopupViewTestAppDelegate.m */; };
@@ -24,11 +23,44 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		3A0DCD7C23E1FF8E002FDF2D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A0DCD7B23E1FF8E002FDF2D /* Default-568h@2x.png */; };
+		3A0DCDAB23E26D51002FDF2D /* UZPopupView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0DCDA723E26CF9002FDF2D /* UZPopupView.framework */; };
+		3A0DCDAC23E26D51002FDF2D /* UZPopupView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0DCDA723E26CF9002FDF2D /* UZPopupView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3A4456CC23E2825F00DE4D1F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3A4456CB23E2825F00DE4D1F /* README.md */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3A0DCDA623E26CF9002FDF2D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A0DCDA223E26CF9002FDF2D /* UZPopupView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3A0DCD9523E26998002FDF2D;
+			remoteInfo = UZPopupView;
+		};
+		3A0DCDA823E26D37002FDF2D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A0DCDA223E26CF9002FDF2D /* UZPopupView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3A0DCD9423E26998002FDF2D;
+			remoteInfo = UZPopupView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3A0DCDAD23E26D51002FDF2D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3A0DCDAC23E26D51002FDF2D /* UZPopupView.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		1410EF4D144070F600C034A5 /* UZPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UZPopupView.h; sourceTree = "<group>"; };
-		1410EF4E144070F600C034A5 /* UZPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UZPopupView.m; sourceTree = "<group>"; };
 		1427AFDE127F02840082F84D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		143F9FF5139756270008ACE0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = PopupViewTest/main.m; sourceTree = SOURCE_ROOT; };
 		143F9FF7139756270008ACE0 /* PopupViewTest_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopupViewTest_Prefix.pch; path = PopupViewTest/PopupViewTest_Prefix.pch; sourceTree = SOURCE_ROOT; };
@@ -50,6 +82,9 @@
 		1D6058910D05DD3D006BFB54 /* PopupViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopupViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3A0DCD7B23E1FF8E002FDF2D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		3A0DCDA223E26CF9002FDF2D /* UZPopupView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = UZPopupView.xcodeproj; sourceTree = SOURCE_ROOT; };
+		3A4456CB23E2825F00DE4D1F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +95,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				3A0DCDAB23E26D51002FDF2D /* UZPopupView.framework in Frameworks */,
 				1427AFDF127F02840082F84D /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -124,8 +160,9 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				1410EF4D144070F600C034A5 /* UZPopupView.h */,
-				1410EF4E144070F600C034A5 /* UZPopupView.m */,
+				3A4456CB23E2825F00DE4D1F /* README.md */,
+				3A0DCDA223E26CF9002FDF2D /* UZPopupView.xcodeproj */,
+				3A0DCD7B23E1FF8E002FDF2D /* Default-568h@2x.png */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				14FDAB9613977B3E008BF9D5 /* Resources */,
 				14B7E42113BD9DB1007C8935 /* iPad */,
@@ -146,6 +183,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3A0DCDA323E26CF9002FDF2D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3A0DCDA723E26CF9002FDF2D /* UZPopupView.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -156,10 +201,12 @@
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+				3A0DCDAD23E26D51002FDF2D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3A0DCDA923E26D37002FDF2D /* PBXTargetDependency */,
 			);
 			name = PopupViewTest;
 			productName = PopupViewTest;
@@ -172,26 +219,43 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 1110;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "PopupViewTest" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
-				English,
-				Japanese,
-				French,
-				German,
+				Base,
+				fr,
+				ja,
+				de,
+				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3A0DCDA323E26CF9002FDF2D /* Products */;
+					ProjectRef = 3A0DCDA223E26CF9002FDF2D /* UZPopupView.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* PopupViewTest */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3A0DCDA723E26CF9002FDF2D /* UZPopupView.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = UZPopupView.framework;
+			remoteRef = 3A0DCDA623E26CF9002FDF2D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
@@ -201,11 +265,13 @@
 				14FDABA013977B3E008BF9D5 /* 2tchSmall.png in Resources */,
 				14FDABA113977B3E008BF9D5 /* Default.png in Resources */,
 				14FDABA213977B3E008BF9D5 /* Default@2x.png in Resources */,
+				3A0DCD7C23E1FF8E002FDF2D /* Default-568h@2x.png in Resources */,
 				14FDABA313977B3E008BF9D5 /* icon114x114.png in Resources */,
 				14FDABA413977B3E008BF9D5 /* icon57x57.png in Resources */,
 				14FDABA513977B3E008BF9D5 /* icon72x72.png in Resources */,
 				14FDABA613977B3E008BF9D5 /* MainWindow.xib in Resources */,
 				14FDABA713977B3E008BF9D5 /* PopupViewTestViewController.xib in Resources */,
+				3A4456CC23E2825F00DE4D1F /* README.md in Resources */,
 				14B7E42313BD9DB5007C8935 /* MainWindow-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,24 +286,35 @@
 				143F9FFF139756270008ACE0 /* main.m in Sources */,
 				143FA002139756270008ACE0 /* PopupViewTestAppDelegate.m in Sources */,
 				143FA003139756270008ACE0 /* PopupViewTestViewController.m in Sources */,
-				1410EF4F144070F600C034A5 /* UZPopupView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3A0DCDA923E26D37002FDF2D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = UZPopupView;
+			targetProxy = 3A0DCDA823E26D37002FDF2D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ./PopupViewTest/PopupViewTest_Prefix.pch;
 				INFOPLIST_FILE = "./PopupViewTest/PopupViewTest-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.PopupViewTest;
 				PRODUCT_NAME = PopupViewTest;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -247,11 +324,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ./PopupViewTest/PopupViewTest_Prefix.pch;
 				INFOPLIST_FILE = "./PopupViewTest/PopupViewTest-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.PopupViewTest;
 				PRODUCT_NAME = PopupViewTest;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -261,12 +342,38 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = _DEBUG;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -274,11 +381,35 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 			};
